@@ -11,16 +11,48 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="navbox">
-        <ul class="navbox-list">
-            <li><a>File</a></li>
-            <li><a>Edit</a></li>
-            <li><a>Help</a></li>
-            <li><a>Social</a></li>
-        </ul>
-    </div>
+    <header>    
+        <div class="navbox">
+            <ul class="navbox-list">
+                <li>
+                    <a class="navbox-option">View</a>
+                    <div class="dropdown-content">
+                        <a href="#">View Items</a>
+                        <a href="#">View Recipes</a>
+                        <a href="#">View Creatures</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="navbox-option">Actions</a>
+                    <div class="dropdown-content">
+                        <a href="#">Push to repository</a>
+                    </div>
+                </li>
+                <li class="last">
+                    <a href="index.html"class="navbox-option">Home</a>
+                </li>
+            </ul>
+        </div>
+    </header>
     <div class="main">
         <h1>Melyra Database Editor</h1>
+        <h2>Manage & Edit assets from the <span style="font-weight: 900;">Melyra Project</span>!</h2>
+        <span style="margin:1.5em;"></span>
+        <ul>
+            <li>
+                View: see the list of assets, or open a specific one!
+            </li>
+            <li>
+                Actions: do actions on the database, mainly pushing it to update.
+            </li>
+        </ul>
+        <p>
+            This tool's use is to make the existence of Melyra's objects (items, creatures, recipe) less abstract for developers.
+            <br>
+            With this, we will be able to manage each object's data directly here. Pushing to update will export the data in the datapack.
+            <br>
+            Keep in mind specific behavior will have to be manually added (e.g abilities, creatures with special AI, etc.)
+        </p>
     </div>
     <div class="bottombox">
         <p>© CMDred</p>
