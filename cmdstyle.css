@@ -3,6 +3,7 @@
     --background2-color: #212632;
     
     --primary-color: #FFFFFF;
+    --primary-color-transparent: rgba(255, 255, 255, 0.1);
     --accent1-color: #b93794;
     --accent2-color: #82c7b3;
     --accent3-color: #69a457;
@@ -139,7 +140,6 @@ body {
     width: 7rem;
 }
 
-
 .main {
     display:flex;
     justify-content: center;
@@ -169,6 +169,59 @@ body {
 
 .main ul li {
     font-size: 1.1em;
+}
+
+.element-list {
+    height: 10em;
+    width: 100%;
+    display: grid;
+    margin-left: 12em;
+    margin-top: 4em;
+}
+
+.melyra-element {
+    height: 196px;
+    width: 196px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@font-face {
+    font-family: 'MinecraftiaRegular';
+    src: url('https://fontlibrary.org/assets/fonts/minecraftia/71962a7e3d4a70435c030466a12f1d63/bf3f245b7cd53caea0cb07d265a64adc/MinecraftiaRegular.ttf');
+}
+
+.melyra-element img {
+    width:100%;
+    background-color: var(--primary-color-transparent);
+    border-radius: 5px;
+    image-rendering: pixelated;
+}
+
+.melyra-element p {
+    font-family: 'MinecraftiaRegular';
+    border-image-source: url("/melyra-db/assets/tooltip_texture.png");
+    border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
+    border-image-width: 15px 16px;
+    color: var(--primary-color);
+    font-size: 1.15em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    margin: 0;
+    margin-bottom: -10px;
+    width: 125%;
+    height: 2.5em;
+    border-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    z-index: 2;
 }
 
 
