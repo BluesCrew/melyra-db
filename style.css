@@ -1,0 +1,105 @@
+:root {
+    --background-color: #171A21;
+    --background2-color: #212632;
+    
+    --primary-color: #FFFFFF;
+    --accent1-color: #b93794;
+    --accent2-color: #5ed6b4;
+    --accent3-color: #69a457;
+}
+
+html {
+    height: 100%;
+    background: linear-gradient(0deg, var(--background-color) 75%, var(--background2-color) 100%) no-repeat;
+}
+
+body {
+    color: var(--primary-color);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.navbox{
+    background-color: var(--accent3-color);
+    border-radius: 5px;
+    height: 4em;
+    width:100%;
+    position: sticky;
+}
+
+.navbox-list {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0%;
+    margin-top: 0%;
+    display:flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    list-style: none;
+}
+
+.navbox-list li {
+    width: 5em;
+    height: 98%;
+    border: 3px solid;
+    border-color: var(--background-color);
+    border-radius: 2px;
+    margin-left: -3px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    transition: color 0.25s ease-in-out;
+    -o-transition: color 0.25s ease-in-out;
+    -ms-transition: color 0.25s ease-in-out;
+    -moz-transition: color 0.25s ease-in-out;
+    -webkit-transition: color 0.25s ease-in-out;
+}
+
+.navbox-list li:hover {
+    color: var(--accent2-color);
+    transition: color 0.25s ease-in-out;
+    -o-transition: color 0.25s ease-in-out;
+    -ms-transition: color 0.25s ease-in-out;
+    -moz-transition: color 0.25s ease-in-out;
+    -webkit-transition: color 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.navbox-list li::after {
+    color: var(--accent1-color);
+    transition: 0.25s ease-in-out;
+}
+
+.navbox-list li a {
+    font-size: 1.25em;
+    font-weight: 500;
+    color: inherit;
+}
+
+
+.main {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main h1 {
+    font-size: 5em;
+    font-weight: 800;
+}
+
+.bottombox{
+    position: fixed;
+    bottom: 0;
+    background: black;
+    width: calc(100% - 1.75em);
+    height:3.5em;
+    border-radius: 5px;
+    padding-top: 1px;
+    padding-left: 8px;
+}
