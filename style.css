@@ -80,7 +80,7 @@ body {
     cursor: pointer;
 }
 
-.navbox-list li:hover .dropdown-content {
+.navbox-list li:hover .cmddropdown-content {
     width: fit-content;
     height: auto;
     display: flex;
@@ -89,7 +89,7 @@ body {
     color: var(--accent3-color);
 }
 
-.dropdown-content {
+.cmddropdown-content {
 
     display:none;
 
@@ -102,7 +102,7 @@ body {
     border-radius: 2px;
 }
 
-.dropdown-content a {
+.cmddropdown-content a {
     padding-top: 1em;
     padding-bottom: 1em;
     padding-left: 0.5em;
@@ -115,7 +115,7 @@ body {
     border-color: var(--background2-color);
 }
 
-.dropdown-content a:hover {
+.cmddropdown-content a:hover {
     text-decoration: underline;
 }
 
