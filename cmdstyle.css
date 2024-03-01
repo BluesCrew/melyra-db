@@ -235,13 +235,13 @@ body {
     z-index: 2;
 
     height: 28px;
-    transition: height 0.3 ease-in-out;
+    transition: height 0.3s ease-in-out;
 }
 
 .melyra-element:hover .melyra-element-tooltip {
     height: 12em;
     opacity: 0.8;
-    transition: 0.3 ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 
