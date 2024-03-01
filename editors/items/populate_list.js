@@ -5,7 +5,8 @@ a = new BaseItem(
     }, 
     {
         isCustomTexture: false,
-        rarityColor: "red"
+        rarityColor: RARITY_UNCOMMON,
+        minecraftId: "cooked_beef"
     }
 );
 
@@ -20,10 +21,11 @@ function populate_list(item) {
 
     let newName = document.createElement("p");
     newName.textContent = item.name;
-    newName.style.color = item.rarityColor;
+    newName.style.color = item.rarityColor.color;
     
     let img = document.createElement("img");
     img.src = item.sprite;
+    img.style.imageRendering = "pixelated";
     
     newElem.appendChild(newName);
     newElem.appendChild(img);

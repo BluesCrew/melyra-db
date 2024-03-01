@@ -2,41 +2,45 @@ class MelyraElement {
     name;
     internalId;
     versionNumber = 1;
-    constructor({_name = undefined, _internalId = undefined, _versionNumber = 1})
+    constructor({name = undefined, internalId = undefined, versionNumber = 1})
     {
-        this.internalId = _internalId;
-        this.name = _name;
-        this.versionNumber = _versionNumber;
+        this.internalId = internalId;
+        this.name = name;
+        this.versionNumber = versionNumber;
     }
 }
 
 class BaseItem extends MelyraElement {
-    sprite;
     description;
     rarityColor;
     model;
+    sprite;
 
-    constructor(baseArgs, {isCustomTexture = false, minecraftId = undefined, description=undefined, rarity = null, model = null}, isCustomTexture)
+    constructor(baseArgs, {isCustomTexture = false, minecraftId = undefined, description=undefined, rarityColor = null, model = null})
     {
         super(baseArgs);
+
+        this.description = description;
+        this.rarityColor = rarityColor;
+        this.model = model;
 
         // Get sprite from system
         if (!isCustomTexture) 
         {
-            sprite = "https://minecraftitemids.com/item/64/" + minecraftId + ".png";
+            this.sprite = "https://minecraftitemids.com/item/64/" + minecraftId + ".png";
         }
     }
 }
 
-RARITY_COMMON = {
+const RARITY_COMMON = {
     display: "Common",
     color: "#FFFFFF"
 }
-RARITY_UNCOMMON = {
+const RARITY_UNCOMMON = {
     display: "Uncommon",
     color: "#55FF55"
 }
-RARITY_RARE = {
+const RARITY_RARE = {
     display: "Rare",
     color: "#5555FF"
 }
