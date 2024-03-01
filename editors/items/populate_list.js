@@ -68,13 +68,13 @@ function populate_list(item) {
 
     parent.addEventListener("mouseleave", function() {
         setTimeout(function() {
-            newName.innerHTML = '<span style="color: rgb(85, 255, 255); text-align: center;">Test Name</span>';
+            newName.innerHTML = '<span style="color: rgb(85, 255, 255); display:block; text-align: center;">Test Name</span>';
         }, 400)
     })
 
     parent.addEventListener("mouseenter", function () {
         newName.innerHTML = 
-        '<span style="color: rgb(85, 255, 255); text-align: center;">Test Name</span>\
+        '<span style="color: rgb(85, 255, 255); display:block; text-align: center;">Test Name</span>\
         <br>\
         <span style="color: rgb(237, 237, 237);">[Helmet | Legendary]</span>\
         <br>\
