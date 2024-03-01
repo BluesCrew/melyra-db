@@ -164,7 +164,7 @@ body {
     margin-bottom: 0;
 }
 
-.main p {
+.main p:not(.melyra-element-tooltip) {
     justify-content: left;
     font-size: 1.1em;
     line-height: 1.5em;
@@ -188,29 +188,33 @@ body {
     height: fit-content;
 }
 
-.melyra-element {
-    height: 196px;
-    width: 196px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 @font-face {
     font-family: 'MinecraftiaRegular';
     src: url('/melyra-db/assets/minecraft_font.ttf');
 }
+
+.melyra-element {
+    min-height: 196px;
+    width: 196px;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
 
 .melyra-element img {
     width:100%;
     background-color: var(--primary-color-transparent);
     border-radius: 5px;
     image-rendering: pixelated;
+    padding: 8px;
 }
 
-.melyra-element p {
+.melyra-element-tooltip {
     font-family: 'MinecraftiaRegular';
     border-image-source: url("/melyra-db/assets/tooltip_texture.png");
     border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
@@ -218,18 +222,26 @@ body {
     color: var(--primary-color);
     font-size: 1.15em;
     display: flex;
-    align-items: center;
-    text-align: center;
+    align-items: top;
     justify-content: center;
-    position: relative;
+    position: absolute;
+    top: -15%;
     margin: 0;
     margin-bottom: -5px;
     width: 125%;
-    height: 2.5em;
     border-radius: 4px;
     padding-top: 10px;
     padding-bottom: 10px;
     z-index: 2;
+
+    height: 28px;
+    transition: height 0.3 ease-in-out;
+}
+
+.melyra-element:hover .melyra-element-tooltip {
+    height: 12em;
+    opacity: 0.8;
+    transition: 0.3 ease-in-out;
 }
 
 

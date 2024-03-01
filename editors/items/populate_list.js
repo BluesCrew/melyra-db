@@ -46,10 +46,10 @@ function populate_list(item) {
     let newName = document.createElement("p");
     newName.textContent = item.name;
     newName.style.color = item.rarityColor.color;
-    
+    newName.classList.add("melyra-element-tooltip")
+
     let img = document.createElement("img");
     img.src = item.sprite;
-    img.style.imageRendering = "pixelated";
     
     newElem.appendChild(newName);
     newElem.appendChild(img);
