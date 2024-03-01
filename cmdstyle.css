@@ -175,7 +175,7 @@ body {
 .element-list {
     height: 10em;
     display: grid;
-    grid-template-columns: repeat(4, 196px);
+    grid-template-columns: repeat(auto-fit, 196px);
     gap: 128px;
     grid-auto-rows: minmax(196px, auto);
     margin-left: 3em;
