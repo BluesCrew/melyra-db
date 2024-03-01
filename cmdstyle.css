@@ -7,6 +7,8 @@
     --accent1-color: #b93794;
     --accent2-color: #82c7b3;
     --accent3-color: #69a457;
+
+    --footer-height: 3.5em;
 }
 
 body {
@@ -18,13 +20,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-self: center;
 
     min-height: fit-content;
-    height: fit-content;
+
+    padding-bottom: calc(var(--footer-height) + 2em);
 
     background: linear-gradient(0deg, var(--background-color) 66%, var(--background2-color) 100%) no-repeat;
-    background-attachment: fixed;
+    background-attachment:fixed;
 }
 
 .navbox{
@@ -146,6 +148,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    min-height: fit-content;
 }
 
 .main h1 {
@@ -182,6 +185,7 @@ body {
     left: 8%;
     width: 80%;
     margin-top: 4em;
+    height: fit-content;
 }
 
 .melyra-element {
@@ -234,7 +238,7 @@ body {
     bottom: 0;
     background: black;
     width: calc(100% - 1.75em);
-    height:3.5em;
+    height:var(--footer-height);
     border-radius: 5px;
     padding-top: 1px;
     padding-left: 8px;

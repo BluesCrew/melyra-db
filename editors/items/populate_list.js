@@ -17,13 +17,25 @@ b = new BaseItem(
     }, 
     {
         isCustomTexture: false,
-        rarityColor: RARITY_LEGENDARY,
+        rarityColor: RARITY_EPIC,
         minecraftId: "birch_boat"
     }
 );
 
+c = new BaseItem(
+    {
+        name: "Ender Fragment",
+        internalId: "melyra:hyper_boat",
+    }, 
+    {
+        isCustomTexture: false,
+        rarityColor: RARITY_LEGENDARY,
+        minecraftId: "silence_armor_trim_smithing_template"
+    }
+);
+
 all_items = [];
-all_items.push(a, b);
+all_items.push(a, b, c, c, a, b, a, c, a, b, a, c, a, c, b, c, b);
 
 function populate_list(item) {
     let parent = document.getElementById("list-parent");
