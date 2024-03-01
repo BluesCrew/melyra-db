@@ -175,6 +175,9 @@ body {
     height: 10em;
     width: 100%;
     display: grid;
+    grid-template-columns: repeat(3, 276px);
+    gap: 1px;
+    grid-auto-rows: minmax(100px, auto);
     margin-left: 12em;
     margin-top: 4em;
 }
@@ -191,7 +194,7 @@ body {
 
 @font-face {
     font-family: 'MinecraftiaRegular';
-    src: url('https://fontlibrary.org/assets/fonts/minecraftia/71962a7e3d4a70435c030466a12f1d63/bf3f245b7cd53caea0cb07d265a64adc/MinecraftiaRegular.ttf');
+    src: url('/melyra-db/assets/minecraft_font.ttf');
 }
 
 .melyra-element img {
@@ -208,7 +211,6 @@ body {
     border-image-width: 15px 16px;
     color: var(--primary-color);
     font-size: 1.15em;
-    font-weight: 600;
     display: flex;
     align-items: center;
     text-align: center;
