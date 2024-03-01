@@ -1,7 +1,7 @@
 a = new BaseItem(
     {
         name: "Super Beef",
-        internalId: "melyra:a",
+        internalId: "melyra:super_beef",
     }, 
     {
         isCustomTexture: false,
@@ -10,8 +10,20 @@ a = new BaseItem(
     }
 );
 
+b = new BaseItem(
+    {
+        name: "Hyper Boat",
+        internalId: "melyra:hyper_boat",
+    }, 
+    {
+        isCustomTexture: false,
+        rarityColor: RARITY_LEGENDARY,
+        minecraftId: "birch_boat"
+    }
+);
+
 all_items = [];
-all_items.push(a);
+all_items.push(a, b);
 
 function populate_list(item) {
     let parent = document.getElementById("list-parent");

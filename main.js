@@ -27,7 +27,7 @@ class BaseItem extends MelyraElement {
         // Get sprite from system
         if (!isCustomTexture) 
         {
-            this.sprite = "https://minecraftitemids.com/item/64/" + minecraftId + ".png";
+            this.sprite = "/melyra-db/assets/item/" + minecraftId + ".png";
         }
     }
 }
@@ -43,4 +43,12 @@ const RARITY_UNCOMMON = {
 const RARITY_RARE = {
     display: "Rare",
     color: "#5555FF"
+}
+const RARITY_EPIC = {
+    display: "Epic",
+    color: "#FF55FF"
+}
+const RARITY_LEGENDARY = {
+    display: "Legendary",
+    color: "#55FFFF"
 }
