@@ -12,7 +12,7 @@ sword_of_stars = {
 
 all_items = [];
 all_items.push(diamond_sword);
-all_items.push(sword_of_stars);
+all_items.push(sword_of_stars, diamond_sword, diamond_sword, sword_of_stars);
 
 function get_sprite(item) {
     return "/melyra-db/assets/prototype/" + item.id + ".png";

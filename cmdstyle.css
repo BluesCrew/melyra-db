@@ -9,11 +9,6 @@
     --accent3-color: #69a457;
 }
 
-html {
-    min-height: 100%;
-    background: linear-gradient(0deg, var(--background-color) 66%, var(--background2-color) 100%) no-repeat;
-}
-
 body {
     color: var(--primary-color);
     font-family: "Montserrat", sans-serif;
@@ -24,6 +19,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-self: center;
+
+    min-height: fit-content;
+    height: fit-content;
+
+    background: linear-gradient(0deg, var(--background-color) 66%, var(--background2-color) 100%) no-repeat;
 }
 
 .navbox{
@@ -173,12 +173,12 @@ body {
 
 .element-list {
     height: 10em;
-    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 276px);
-    gap: 1px;
-    grid-auto-rows: minmax(100px, auto);
-    margin-left: 12em;
+    grid-template-columns: repeat(4, 196px);
+    gap: 128px;
+    grid-auto-rows: minmax(196px, auto);
+    margin-left: 3em;
+    width: 80%;
     margin-top: 4em;
 }
 
@@ -236,4 +236,5 @@ body {
     border-radius: 5px;
     padding-top: 1px;
     padding-left: 8px;
+    z-index: 4;
 }
