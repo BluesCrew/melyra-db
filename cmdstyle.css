@@ -24,6 +24,7 @@ body {
     height: fit-content;
 
     background: linear-gradient(0deg, var(--background-color) 66%, var(--background2-color) 100%) no-repeat;
+    background-attachment: fixed;
 }
 
 .navbox{
