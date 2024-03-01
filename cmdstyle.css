@@ -221,9 +221,8 @@ body {
     border-image-width: 15px 16px;
     color: var(--primary-color);
     font-size: 1.15em;
-    display: flex;
-    align-items: top;
-    justify-content: center;
+
+
     position: absolute;
     top: -15%;
     margin: 0;
@@ -231,25 +230,29 @@ body {
     width: 125%;
     border-radius: 4px;
     padding-top: 10px;
+    padding-left: 12px;
     padding-bottom: 10px;
     z-index: 2;
+    overflow: hidden;
+
 
     height: 28px;
-    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    -o-transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    -ms-transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    -moz-transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    -webkit-transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
 }
 
 .melyra-element:hover .melyra-element-tooltip {
-    height: 12em;
+    height: 23em;
     opacity: 0.8;
-    transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
+    width: 28em;
+    transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
 }
 
 
