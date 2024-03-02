@@ -15,19 +15,65 @@ class BaseItem extends MelyraElement {
     rarity;
     model;
     sprite;
+    minecraftId;
+    type;
 
     constructor(baseArgs, {isCustomTexture = false, minecraftId = undefined, description=undefined, rarity = null, model = null})
     {
         super(baseArgs);
         
         this.description = description;
-        this.rarity = getRarityObject(rarity);
+        this.rarity = rarity;
         this.model = model;
+        this.minecraftId = minecraftId;
+        this.type = "Material";
 
         // Get sprite from system
         if (!isCustomTexture) 
         {
+            minecraftId = minecraftId.replace("minecraft:", "");
             this.sprite = "/melyra-db/assets/item/" + minecraftId + ".png";
         }
+    }
+
+    get_type_line() {
+        return {text:"["+this.type+" | "+this.rarity.name+"]",color:"#EDEDED"}
+    }
+
+    get_lore() {
+        let lines = [];
+        lines.push(this.get_type_line());
+
+        if (this.description) { 
+            lines.push({text:" "}); 
+            for (let descLine of this.description) { 
+                lines.push({text: descLine, color:"dark_gray"}); 
+            }
+        }
+        
+        return lines;
+    }
+}
+
+class StatItem extends BaseItem {
+    stats = {
+        health,
+        defense,
+        magicDefense,
+        healthRegeneration,
+        manaRegeneration,
+        damage,
+        strength,
+        critical,
+        drawSpeed,
+        overdraw,
+        attackSpeed,
+        mana,
+        magicDamage,
+        speed,
+        arcane,
+        miningSpeed,
+        woodcuttingSpeed,
+        fishingSpeed
     }
 }

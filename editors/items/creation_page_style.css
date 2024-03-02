@@ -1,0 +1,105 @@
+.previewing-area {
+    position: fixed;
+    right: 1em;
+    top: 10%;
+    width: 27%;
+    height: max-content;
+
+    margin: 1em;
+    padding-top: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 10px;
+    z-index: 2;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+}
+
+.preview-tooltip {
+    font-family: 'MinecraftiaRegular';
+    border-image-source: url("/melyra-db/assets/tooltip_texture.png");
+    border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
+    border-image-width: 15px 16px;
+    color: var(--primary-color);
+    font-size: 1.15em;
+    width: 100%;
+    min-height: max-content;
+    padding-top: 6px;
+    padding-left: 12px;
+    padding-bottom: 8px;
+}
+
+#previewCanvas {
+    width: 66.667%;
+    aspect-ratio: 1 / 1;
+    background-color: rgba(56, 57, 97, 0.25);
+    border-radius: 5px;
+    image-rendering: pixelated;
+
+    z-index: 1;
+}
+
+.editing-area {
+    min-height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    gap: 1em;
+}
+
+.editing-area .group-label {
+    position: relative;
+    left: 2%;
+    align-self: flex-start;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    text-decoration: underline;
+    font-size: 1.8em;
+}
+
+.inputbox {
+    height: 4em;
+    width: 30em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 20px;
+    border: 2px solid;
+    border-color: rgba(56, 57, 97, 0.25);
+    border-radius: 3px;
+}
+
+.inputbox div {
+    margin-left: 0;
+    width: 10em;
+    margin-right: 1em;
+    position: relative;
+    left: 5px;
+}
+
+.inputbox select option {
+    font-size: 0.8em;
+}
+
+.inputbox .data-input {
+    left: 15%;
+    height: 50%;
+    width: 80%;
+    font-size: large;
+    font-family: 'MinecraftiaRegular';
+    font-weight: 200;
+    padding-left: 8px;
+    border-radius: 5px;
+    background-color: var(--background2-color);
+    color: var(--primary-color);
+    margin: 5px;
+}

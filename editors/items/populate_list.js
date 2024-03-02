@@ -1,10 +1,9 @@
 function populate_list(item) {
-    console.log(item);
-
     let parent = document.getElementById("list-parent");
 
     let newElem = document.createElement("a");
     newElem.classList.add("melyra-element");
+    newElem.href = "/melyra-db/editors/items/creation_page.html"
 
     let newName = document.createElement("p");
     newName.style.color = getColorCodeHex(item.rarity.color)

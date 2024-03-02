@@ -5,7 +5,7 @@ a = new BaseItem(
     }, 
     {
         isCustomTexture: false,
-        rarity: "Common",
+        rarity: getRarityObject("Common"),
         minecraftId: "cooked_beef"
     }
 );
@@ -17,7 +17,7 @@ b = new BaseItem(
     }, 
     {
         isCustomTexture: false,
-        rarity: "Epic",
+        rarity: getRarityObject("Epic"),
         minecraftId: "birch_boat"
     }
 );
@@ -29,7 +29,7 @@ c = new BaseItem(
     }, 
     {
         isCustomTexture: false,
-        rarity: "Legendary",
+        rarity: getRarityObject("Legendary"),
         minecraftId: "silence_armor_trim_smithing_template"
     }
 );
