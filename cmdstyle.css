@@ -227,32 +227,38 @@ body {
     top: -15%;
     margin: 0;
     margin-bottom: -5px;
-    width: 125%;
     border-radius: 4px;
     padding-top: 10px;
     padding-left: 12px;
+    padding-right: 12px;
     padding-bottom: 10px;
     z-index: 2;
     overflow: hidden;
+    text-align: center;
 
 
-    height: 28px;
-    transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -webkit-transition: all 0.4s ease-in-out;
+    max-height: 28px;
+    width: 125%;
+    transition: max-height 0.5s ease;
+    overflow: hidden;
 }
 
+
+
 .melyra-element:hover .melyra-element-tooltip {
-    height: 23em;
-    opacity: 0.8;
-    width: 28em;
-    transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -webkit-transition: all 0.4s ease-in-out;
+    max-height: 500px;
+    width: max-content;
+}
+
+.melyra-element-tooltip-lore{
+    opacity: 0%;
+}
+
+
+.melyra-element:hover .melyra-element-tooltip .melyra-element-tooltip-lore{
+    opacity: 100%;
+    transition: opacity 1s ease-out 0.1s;
+    text-align: left;
 }
 
 

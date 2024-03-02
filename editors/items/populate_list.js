@@ -58,23 +58,8 @@ function populate_list(item) {
     newName.style.color = item.rarityColor.color;
     newName.classList.add("melyra-element-tooltip")
 
-    let img = document.createElement("img");
-    img.src = item.sprite;
-    
-    newElem.appendChild(newName);
-    newElem.appendChild(img);
-
-    parent.appendChild(newElem);
-
-    parent.addEventListener("mouseleave", function() {
-        setTimeout(function() {
-            newName.innerHTML = '<span style="color: rgb(85, 255, 255); display:block; text-align: center;">Test Name</span>';
-        }, 400)
-    })
-
-    parent.addEventListener("mouseenter", function () {
-        newName.innerHTML = 
-        '<span style="color: rgb(85, 255, 255); display:block; text-align: center;">Test Name</span>\
+    newName.innerHTML = '<span style="color: rgb(85, 255, 255); text-align: center;">Test Name</span>';
+    newName.innerHTML += '<div class="melyra-element-tooltip-lore">\
         <br>\
         <span style="color: rgb(237, 237, 237);">[Helmet | Legendary]</span>\
         <br>\
@@ -125,8 +110,16 @@ function populate_list(item) {
         <span style="color: rgb(170, 170, 170);"> [</span>\
         <span style="color: rgb(255, 255, 255);">❌</span>\
         <span style="color: rgb(170, 170, 170);">] </span>\
-        <br>'
-    })
+        <br>\
+        </div>'
+
+    let img = document.createElement("img");
+    img.src = item.sprite;
+    
+    newElem.appendChild(newName);
+    newElem.appendChild(img);
+
+    parent.appendChild(newElem);
 }
 
 
