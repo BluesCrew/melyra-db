@@ -193,6 +193,20 @@ body {
     src: url('/melyra-db/assets/minecraft_font.ttf');
 }
 
+
+@font-face {
+    font-family: 'MontserratItalic';
+    src: url('/melyra-db/assets/montserrat_italic.ttf');
+}
+
+
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/melyra-db/assets/montserrat.ttf');
+}
+
+
 .melyra-element {
     min-height: 196px;
     width: 196px;
