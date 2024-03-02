@@ -1,38 +1,40 @@
 a = new BaseItem(
     {
         name: "Super Beef",
-        internalId: "melyra:super_beef",
+        internalId: "super_beef",
     }, 
     {
         isCustomTexture: false,
         rarity: getRarityObject("Common"),
-        minecraftId: "cooked_beef"
+        minecraftId: "cooked_beef",
     }
 );
 
 b = new BaseItem(
     {
         name: "Hyper Boat",
-        internalId: "melyra:hyper_boat",
+        internalId: "hyper_boat",
     }, 
     {
         isCustomTexture: false,
         rarity: getRarityObject("Epic"),
-        minecraftId: "birch_boat"
+        minecraftId: "birch_boat",
+        description: "Test1\\nTest2\\nTest3"
     }
 );
 
 c = new BaseItem(
     {
         name: "Ender Fragment",
-        internalId: "melyra:hyper_boat",
+        internalId: "ender_fragment",
     }, 
     {
         isCustomTexture: false,
         rarity: getRarityObject("Legendary"),
-        minecraftId: "silence_armor_trim_smithing_template"
+        minecraftId: "silence_armor_trim_smithing_template",
+        type: "Material"
     }
 );
 
-all_items = [];
-all_items.push(a, b, c);
+allItems = [];
+allItems.push(a, b, c);

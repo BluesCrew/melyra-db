@@ -40,13 +40,19 @@ class BaseItem extends MelyraElement {
         return {text:"["+this.type+" | "+this.rarity.name+"]",color:"#EDEDED"}
     }
 
+    decomposeDescription() {
+        if (this.description === undefined) {return []};
+        return this.description.split("\\n");
+    }
+
     get_lore() {
         let lines = [];
         lines.push(this.get_type_line());
 
-        if (this.description) { 
+        let descLines = this.decomposeDescription();
+        if (descLines) { 
             lines.push({text:" "}); 
-            for (let descLine of this.description) { 
+            for (let descLine of descLines) { 
                 lines.push({text: descLine, color:"dark_gray"}); 
             }
         }

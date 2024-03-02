@@ -3,19 +3,10 @@ const tooltip = document.getElementById("previewTooltip");
 
 function updatePreview(item) {
     tooltip.innerHTML = '<span style="color: '+getColorCodeHex(item.rarity.color)+'">'+item.name+'</span>';
+    tooltip.innerHTML += '<br>'
     let loreLines = item.get_lore();
-    
-    for (let line of loreLines) {
-        tooltip.innerHTML += "<br>";
-        if (Array.isArray(line)) {
-            for (let segment of line){
-                tooltip.innerHTML += '<span style="color: '+getColorCodeHex(segment.color)+'">'+segment.text+'</span>';
-            }
-        }
-        else if (line.text !== " "){
-            tooltip.innerHTML += '<span style="color: '+getColorCodeHex(line.color)+'">'+line.text+'</span>';
-        }
-    }
+
+    loadLoreElements(tooltip, loreLines);
 
     setIcon(item);
 }

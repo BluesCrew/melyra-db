@@ -4,19 +4,27 @@ document.getElementById("optionUncommon").style.color = getColorCodeHex(getRarit
 document.getElementById("optionRare").style.color = getColorCodeHex(getRarityObject("Rare").color);
 document.getElementById("optionEpic").style.color = getColorCodeHex(getRarityObject("Epic").color);
 document.getElementById("optionLegendary").style.color = getColorCodeHex(getRarityObject("Legendary").color);
-let raritySelect = document.getElementById("raritySelect");
 
 // Default Values
-raritySelect.onchange = (event) => {
-    console.log(event.target.value);
-    raritySelect.style.color = getColorCodeHex(getRarityObject(event.target.value).color);
+const internalId = document.getElementById("internalId"); 
+const versionId = document.getElementById("versionId"); 
+const minecraftId = document.getElementById("minecraftId"); 
+const name = document.getElementById("itemName"); 
+const rarity = document.getElementById("raritySelect"); 
+const type = document.getElementById("typeSelect");
+const description = document.getElementById("description");
+
+const statDataPart = document.getElementById("statItemData");
+
+rarity.onchange = (event) => {
+    rarity.style.color = getColorCodeHex(getRarityObject(event.target.value).color);
 };
 
-document.getElementById("internalId").value = "melyra:new_item";
-document.getElementById("versionId").value = 0;
-document.getElementById("minecraftId").value = "minecraft:coal";
-document.getElementById("itemName").value = "New Item";
-document.getElementById("typeSelect").value = "Material";
+internalId.value = "new_item";
+versionId.value = 1;
+minecraftId.value = "minecraft:coal";
+itemName.value = "New Item";
+type.value = "Material";
 
 // Store edited item
 let EDITED_ITEM;
@@ -30,29 +38,42 @@ for (let input of allInputs) {
     })
 }
 
+function importItem(item) {
+    internalId.value = item.internalId;
+    versionId.value = item.versionNumber;
+    minecraftId.value = item.minecraftId;
+    itemName.value = item.name;
+    rarity.value = item.rarity.name;
+    type.value = item.type;
+    if (item.description === undefined){
+        description.value = "";
+    } else {
+        description.value = item.description;
+    }
+
+
+    if (item.type != "Material") {
+        
+    }
+
+    updateItem();
+
+    setTimeout(function() {updatePreview(EDITED_ITEM)}, 10);
+}
+
 function updateItem() {
-    let internalId = document.getElementById("internalId"); 
-    let versionId = document.getElementById("versionId"); 
-    let minecraftId = document.getElementById("minecraftId"); 
-    let name = document.getElementById("itemName"); 
-    let rarity = document.getElementById("raritySelect"); 
-    let type = document.getElementById("typeSelect");
-    let description = document.getElementById("description");
-
-    let statDataPart = document.getElementById("statItemData");
-
     if (type.value === "Material")
     {
         statDataPart.style.display = "none";
 
         EDITED_ITEM = new BaseItem(
             {
-                name: name.value,
+                name: itemName.value,
                 internalId: internalId.value,
                 versionNumber: versionId.value
             },
             {
-                description: decomposeDescription(description.value),
+                description: description.value,
                 rarity: getRarityObject(rarity.value),
                 minecraftId: minecraftId.value
             }
@@ -65,9 +86,4 @@ function updateItem() {
 
     // finally, update preview
     updatePreview(EDITED_ITEM);
-}
-
-function decomposeDescription(raw) {
-    if (!raw) return undefined;
-    return raw.split("\\n");
 }

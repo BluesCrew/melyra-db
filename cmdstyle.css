@@ -216,6 +216,11 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
 }
 
 
