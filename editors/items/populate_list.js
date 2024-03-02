@@ -30,3 +30,7 @@ for(item of allItems)
 {
     populate_list(item);
 }
+
+document.getElementById("newItemButton").addEventListener("click", function() {
+    document.location.href = "/melyra-db/editors/items/creation_page.html?data=$";
+})

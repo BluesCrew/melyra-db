@@ -41,7 +41,7 @@ class BaseItem extends MelyraElement {
     }
 
     decomposeDescription() {
-        if (this.description === undefined) {return []};
+        if (this.description === undefined || this.description === null || this.description === "") {return undefined};
         return this.description.split("\\n");
     }
 
@@ -50,7 +50,8 @@ class BaseItem extends MelyraElement {
         lines.push(this.get_type_line());
 
         let descLines = this.decomposeDescription();
-        if (descLines) { 
+
+        if (descLines !== undefined) { 
             lines.push({text:" "}); 
             for (let descLine of descLines) { 
                 lines.push({text: descLine, color:"dark_gray"}); 

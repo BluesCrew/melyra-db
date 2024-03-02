@@ -8,6 +8,7 @@ function updatePreview(item) {
 
     loadLoreElements(tooltip, loreLines);
 
+
     setIcon(item);
 }
 
