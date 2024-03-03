@@ -64,23 +64,95 @@ class BaseItem extends MelyraElement {
 
 class StatItem extends BaseItem {
     stats = {
-        health,
-        defense,
-        magicDefense,
-        healthRegeneration,
-        manaRegeneration,
-        damage,
-        strength,
-        critical,
-        drawSpeed,
-        overdraw,
-        attackSpeed,
-        mana,
-        magicDamage,
-        speed,
-        arcane,
-        miningSpeed,
-        woodcuttingSpeed,
-        fishingSpeed
+        health: undefined,
+        defense: undefined,
+        magicDefense: undefined,
+        healthRegeneration: undefined,
+        manaRegeneration: undefined,
+        damage: undefined,
+        strength: undefined,
+        critical: undefined,
+        drawSpeed: undefined,
+        overdraw: undefined,
+        attackSpeed: undefined,
+        mana: undefined,
+        magicDamage: undefined,
+        speed: undefined,
+        arcane: undefined,
+        miningSpeed: undefined,
+        woodcuttingSpeed: undefined,
+        // fishingSpeed: undefined
+    }
+    upgradable = true;
+
+    constructor(baseArgs, baseArgs2, statArgs, {type = "Melee", upgradable = true}) {
+        super(baseArgs, baseArgs2);
+
+        super.type = type;
+        this.upgradable = upgradable;
+
+        Object.assign(this.stats, statArgs);
+    }
+
+    get_lore() {
+        let lines = super.get_lore();
+
+        if (this.upgradable) {
+            lines = insertAt(lines, 1, {text:"Level +0",color:"white"});
+        }
+
+        lines.push({text:" "})
+        
+        let currentGroup = 0;
+        let count = 0;
+        let hasStat = false;
+        for (let data of statData) {
+            let itemValue = this.stats[data.id];
+
+            if (itemValue === undefined) {continue;}
+
+            hasStat = true;
+
+            if (count === 0) {
+                currentGroup = data.group;
+            }
+            count++;
+
+            if (currentGroup !== data.group) {
+                lines.push({text:" "});
+            }
+            currentGroup = data.group;
+
+
+            if (Array.isArray(itemValue)) {
+                if (data.isPercentage){
+                    itemValue = "+" + itemValue[0] + "% - +" + itemValue[1] + "%";
+                }
+                else {
+                    itemValue = itemValue[0] + " - " + itemValue[1];
+                }   
+            } else if (data.isPercentage){
+                itemValue = "+" + itemValue + "%";
+            }
+            
+            lines.push([{text:data.symbol,color:data.symbolColor},{text:" " + data.name + " ",color:"gray"},{text:itemValue,color:"white"}]);
+        }
+
+        if (hasStat) {lines.push({text:" "});}
+
+        // enchants
+        lines.push([{text:"||",color:this.rarity.color,obfuscated:true},{text:" Enchantments",color:this.rarity.color}])
+
+        let enchantSlotsLine = [{text:"||",color:this.rarity.color,obfuscated:true}]
+        let slotCount = enchantSlotCounts[this.rarity.name];
+        for (let i = 0; i < slotCount; i++) {
+            enchantSlotsLine.push({text:' [',color:"gray"});
+            enchantSlotsLine.push({text:'❌',color:"white"});
+            enchantSlotsLine.push({text:']',color:"gray"});
+        }
+
+        lines.push(enchantSlotsLine);
+
+        return lines;
     }
 }

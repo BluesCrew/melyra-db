@@ -1,16 +1,32 @@
-a = new BaseItem(
+a = new StatItem(
     {
         name: "Super Beef",
         internalId: "super_beef",
     }, 
     {
         isCustomTexture: false,
-        rarity: getRarityObject("Common"),
+        rarity: getRarityObject("Uncommon"),
         minecraftId: "cooked_beef",
+        description: "Be careful when throwing it at a vegan."
+    },
+    {
+        strength: 5,
+        critical: 15,
+        health: 4,
+        defense: 1,
+        manaRegeneration: 1,
+        healthRegeneration: 4,
+        arcane: 4,
+        speed: 4,
+        woodcuttingSpeed: 8,
+        miningSpeed: 7
+    },
+    {
+        type: "Ranged",
     }
 );
 
-b = new BaseItem(
+b = new StatItem(
     {
         name: "Hyper Boat",
         internalId: "hyper_boat",
@@ -20,6 +36,13 @@ b = new BaseItem(
         rarity: getRarityObject("Epic"),
         minecraftId: "birch_boat",
         description: "Test1\\nTest2\\nTest3"
+    },
+    {
+        strength: 25,
+        critical: 18
+    },
+    {
+        type: "Melee",
     }
 );
 

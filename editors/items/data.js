@@ -45,7 +45,7 @@ const statData = [
     { id: "arcane", group: 3, symbol: "¤", numberOfSpaces: 1, symbolColor: "light_purple", name: "Arcane", nbt: "Arcane", isPercentage: false },
     { id: "miningSpeed", group: 3, symbol: "⛏", numberOfSpaces: 1, symbolColor: "gold", name: "Mining Speed", nbt: "MiningSpeed", isPercentage: false },
     { id: "woodcuttingSpeed", group: 3, symbol: "🪓", numberOfSpaces: 1, symbolColor: "gold", name: "Woodcutting Speed", nbt: "WoodcuttingSpeed", isPercentage: false },
-    { id: "fishingSpeed", group: 3, symbol: "🎣", numberOfSpaces: 1, symbolColor: "gold", name: "Fishing Speed", nbt: "FishingSpeed", isPercentage: false },
+    // { id: "fishingSpeed", group: 3, symbol: "🎣", numberOfSpaces: 1, symbolColor: "gold", name: "Fishing Speed", nbt: "FishingSpeed", isPercentage: false },
 ];
 
 const attributeUuids = {
@@ -122,3 +122,11 @@ const colors = [
     'yellow',
     'white'
 ];
+
+const enchantSlotCounts = {
+    Common: 1,
+    Uncommon: 2,
+    Rare: 3,
+    Epic: 4,
+    Legendary: 5
+}

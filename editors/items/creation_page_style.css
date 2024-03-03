@@ -1,7 +1,7 @@
 .previewing-area {
     position: fixed;
     right: 1em;
-    top: 10%;
+    top: 2%;
     width: 27%;
     height: max-content;
 
@@ -11,7 +11,7 @@
     padding-right: 12px;
     padding-bottom: 10px;
     z-index: 2;
-    overflow: hidden;
+    overflow: visible;
 
     display: flex;
     flex-direction: column;
@@ -25,9 +25,9 @@
     font-family: 'MinecraftiaRegular';
     border-image-source: url("/melyra-db/assets/tooltip_texture.png");
     border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
-    border-image-width: 15px 16px;
+    border-image-width: 8px 8px;
     color: var(--primary-color);
-    font-size: 1.15em;
+    font-size: .75em;
     width: 100%;
     min-height: max-content;
     padding-top: 6px;
@@ -36,7 +36,7 @@
 }
 
 #previewCanvas {
-    width: 66.667%;
+    width: 40%;
     aspect-ratio: 1 / 1;
     background-color: rgba(56, 57, 97, 0.25);
     border-radius: 5px;
@@ -78,9 +78,18 @@
     border-radius: 3px;
 }
 
-.inputbox div {
+.inputbox div:not(.stat-label) {
     margin-left: 0;
     width: 10em;
+    margin-right: 1em;
+    position: relative;
+    left: 5px;
+}
+
+
+.stat-label {
+    margin-left: 0;
+    width: 26em;
     margin-right: 1em;
     position: relative;
     left: 5px;
@@ -102,4 +111,32 @@
     background-color: var(--background2-color);
     color: var(--primary-color);
     margin: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+.toggle-range-button {
+    width: 6em;
+    font-family: inherit;
+    margin: 1em;
+    font-weight: 400;
+    background: var(--accent2-color);
+    border: 2px solid;
+    border-color: var(--background-color);
+    border-radius: 3px;
+}
+
+.toggle-range-button:hover {
+    background-color: var(--accent3-color);
+}
+
+#statItemData {
+    min-height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    gap: 1em;
 }
