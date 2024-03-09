@@ -37,7 +37,7 @@ class BaseItem extends MelyraElement {
     }
 
     get_type_line() {
-        return {text:"["+this.type+" | "+this.rarity.name+"]",color:"#EDEDED"}
+        return {text:"["+this.type+" | "+this.rarity+"]",color:"#EDEDED"}
     }
 
     decomposeDescription() {

@@ -1,3 +1,5 @@
+var WhenLoaded = [];
+
 a = new StatItem(
     {
         name: "Super Beef",
@@ -5,7 +7,7 @@ a = new StatItem(
     }, 
     {
         isCustomTexture: false,
-        rarity: getRarityObject("Uncommon"),
+        rarity: "Uncommon",
         minecraftId: "cooked_beef",
         description: "Be careful when throwing it at a vegan."
     },
@@ -33,7 +35,7 @@ b = new StatItem(
     }, 
     {
         isCustomTexture: false,
-        rarity: getRarityObject("Epic"),
+        rarity: "Epic",
         minecraftId: "birch_boat",
         description: "Test1\\nTest2\\nTest3"
     },
@@ -53,7 +55,7 @@ c = new BaseItem(
     }, 
     {
         isCustomTexture: false,
-        rarity: getRarityObject("Legendary"),
+        rarity: "Legendary",
         minecraftId: "silence_armor_trim_smithing_template",
         type: "Material"
     }

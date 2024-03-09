@@ -172,7 +172,7 @@ function updateItem() {
             },
             {
                 description: description.value,
-                rarity: getRarityObject(rarity.value),
+                rarity: rarity.value,
                 minecraftId: minecraftId.value
             }
         );
@@ -189,7 +189,7 @@ function updateItem() {
             },
             {
                 description: description.value,
-                rarity: getRarityObject(rarity.value),
+                rarity: rarity.value,
                 minecraftId: minecraftId.value
             },
             {
