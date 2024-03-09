@@ -125,7 +125,7 @@ function importItem(item) {
     versionId.value = item.versionNumber;
     minecraftId.value = item.minecraftId;
     itemName.value = item.name;
-    rarity.value = item.rarity.name;
+    rarity.value = item.rarity;
     type.value = item.type;
     if (item.description === undefined){
         description.value = "";

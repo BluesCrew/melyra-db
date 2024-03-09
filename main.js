@@ -141,10 +141,10 @@ class StatItem extends BaseItem {
         if (hasStat) {lines.push({text:" "});}
 
         // enchants
-        lines.push([{text:"||",color:this.rarity.color,obfuscated:true},{text:" Enchantments",color:this.rarity.color}])
+        lines.push([{text:"||",color:getRarityObject(this.rarity).color,obfuscated:true},{text:" Enchantments",color:getRarityObject(this.rarity).color}])
 
-        let enchantSlotsLine = [{text:"||",color:this.rarity.color,obfuscated:true}]
-        let slotCount = enchantSlotCounts[this.rarity.name];
+        let enchantSlotsLine = [{text:"||",color:getRarityObject(this.rarity).color,obfuscated:true}]
+        let slotCount = enchantSlotCounts[getRarityObject(this.rarity).name];
         for (let i = 0; i < slotCount; i++) {
             enchantSlotsLine.push({text:' [',color:"gray"});
             enchantSlotsLine.push({text:'❌',color:"white"});

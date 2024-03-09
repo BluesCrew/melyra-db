@@ -2,7 +2,7 @@ const canvas = document.getElementById("previewCanvas");
 const tooltip = document.getElementById("previewTooltip");
 
 function updatePreview(item) {
-    tooltip.innerHTML = '<span style="color: '+getColorCodeHex(item.rarity.color)+'">'+item.name+'</span>';
+    tooltip.innerHTML = '<span style="color: '+getColorCodeHex(getRarityObject(item.rarity).color)+'">'+item.name+'</span>';
     tooltip.innerHTML += '<br>'
     let loreLines = item.get_lore();
 
