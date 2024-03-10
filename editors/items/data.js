@@ -1,9 +1,9 @@
 const rarities = [
-    { name: "Common", color: "white" },
-    { name: "Uncommon", color: "green" },
-    { name: "Rare", color: "blue" },
-    { name: "Epic", color: "light_purple" },
-    { name: "Legendary", color: "aqua" }
+    { name: "Common", color: "white", enchantSlots: 1},
+    { name: "Uncommon", color: "green", enchantSlots: 2 },
+    { name: "Rare", color: "blue", enchantSlots: 3 },
+    { name: "Epic", color: "light_purple", enchantSlots: 4 },
+    { name: "Legendary", color: "aqua", enchantSlots: 5 }
 ];
 
 const colorCodes = {
@@ -122,11 +122,3 @@ const colors = [
     'yellow',
     'white'
 ];
-
-const enchantSlotCounts = {
-    Common: 1,
-    Uncommon: 2,
-    Rare: 3,
-    Epic: 4,
-    Legendary: 5
-}

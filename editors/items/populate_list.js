@@ -10,12 +10,14 @@ function populate_list(item) {
     let newName = document.createElement("p");
     newName.classList.add("melyra-element-tooltip")
 
-    newName.innerHTML = '<span style="color: '+getColorCodeHex(item.rarity.color)+'; text-align: center;">'+item.name+'</span>';
+    newName.innerHTML = '<span style="color: '+getColorCodeHex(getRarityObject(item.rarity).color)+'; text-align: center;">'+item.name+'</span>';
     let tooltipLore = document.createElement("div");
     tooltipLore.classList.add("melyra-element-tooltip-lore");
     newName.appendChild(tooltipLore);
-    loadLoreElements(tooltipLore, item.get_lore());
 
+    Lore = item.get_lore();
+    tooltipLore.setAttribute("Lore", JSON.stringify(Lore));
+    loadLoreElements(tooltipLore, Lore);
 
     let img = document.createElement("img");
     img.src = item.sprite;
@@ -26,11 +28,15 @@ function populate_list(item) {
     parent.appendChild(newElem);
 }
 
-for(item of allItems) 
-{
-    populate_list(item);
+function populate_lists() {
+    for(item of allItems) 
+    {
+        populate_list(item);
+    }
+    
+    document.getElementById("newItemButton").addEventListener("click", function() {
+        document.location.href = "/melyra-db/editors/items/creation_page.html?data=$";
+    })
 }
 
-document.getElementById("newItemButton").addEventListener("click", function() {
-    document.location.href = "/melyra-db/editors/items/creation_page.html?data=$";
-})
+WhenLoaded.push(function() {populate_lists()});
