@@ -160,14 +160,14 @@ class StatItem extends BaseItem {
 
                 const mana = (ability.manaCost === undefined) ? 0 : ability.manaCost;
 
-                lines.push([{text:displayName,color:"blue"},{text:" [",color:"yellow"},{text:activation,color:"gold"},{text:"]",color:"yellow"}]);
+                lines.push([{text:displayName,color:rarityObject.color},{text:" [",color:"yellow"},{text:activation,color:"gold"},{text:"]",color:"yellow"}]);
                 for (let abilDescLine of description) {
-                    lines.push({text:abilDescLine,color:"gray"});
+                    lines.push([{text:" "},{text:abilDescLine,color:"gray"}]);
                 }
 
                 let manaSymbol = statData.find(data => data.id == "mana").symbol;
                 let manaObject = mana === 0 ? {text:"NONE",color:"gold"} : {text:mana,"color":"white"};
-                lines.push([{text:manaSymbol+" Mana: ",color:"aqua"},manaObject]);
+                lines.push([{text:" "},{text:manaSymbol+" Mana: ",color:"aqua"},manaObject]);
                 lines.push({text:" "});
             }
         }
