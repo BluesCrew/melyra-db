@@ -32,11 +32,10 @@ function createStatInput(data) {
     let inputBox = createInputBox('<span style="color: '+getColorCodeHex(data.symbolColor)+'">'+data.symbol+' '+'</span>'+data.name+":", "input", "number")
     inputBox.children.item(0).classList.add("stat-label");
 
-    let firstInput = document.createElement("input");
+    let firstInput = inputBox.children.item(1);
     firstInput.id = data.id;
-    firstInput.classList.add("data-input", "stat-input", "range-first-input");
+    firstInput.classList.add("stat-input", "range-first-input");
     firstInput.type = "number";
-    inputBox.appendChild(firstInput);
 
     let secondInput = document.createElement("input");
     secondInput.id = data.id;
