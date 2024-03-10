@@ -165,9 +165,11 @@ class StatItem extends BaseItem {
                     lines.push([{text:" "},{text:abilDescLine,color:"gray"}]);
                 }
 
-                let manaSymbol = statData.find(data => data.id == "mana").symbol;
-                let manaObject = mana === 0 ? {text:"NONE",color:"gold"} : {text:mana,"color":"white"};
-                lines.push([{text:" "},{text:manaSymbol+" Mana: ",color:"aqua"},manaObject]);
+                if (mana > 0) {
+                    let manaSymbol = statData.find(data => data.id == "mana").symbol;
+                    let manaObject = mana === 0 ? {text:"NONE",color:"gold"} : {text:mana,"color":"white"};
+                    lines.push([{text:" "},{text:manaSymbol+" Mana: ",color:"aqua"},manaObject]);
+                }
                 lines.push({text:" "});
             }
         }
