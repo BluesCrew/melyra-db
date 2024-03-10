@@ -84,12 +84,14 @@ class StatItem extends BaseItem {
         // fishingSpeed: undefined
     }
     upgradable = true;
+    abilities = [];
 
-    constructor(baseArgs, baseArgs2, statArgs, {type = "Melee", upgradable = true}) {
+    constructor(baseArgs, baseArgs2, statArgs, {type = "Melee", upgradable = true, abilities = null}) {
         super(baseArgs, baseArgs2);
 
         super.type = type;
         this.upgradable = upgradable;
+        this.abilities = abilities;
 
         Object.assign(this.stats, statArgs);
     }
@@ -100,12 +102,14 @@ class StatItem extends BaseItem {
         if (this.upgradable) {
             lines = insertAt(lines, 1, {text:"Level +0",color:"white"});
         }
-
+        
         lines.push({text:" "})
         
+        let hasStat = false;
+        const hasAbility = Array.isArray(this.abilities) && this.abilities.length > 0;
+
         let currentGroup = 0;
         let count = 0;
-        let hasStat = false;
         for (let data of statData) {
             let itemValue = this.stats[data.id];
 
@@ -138,13 +142,43 @@ class StatItem extends BaseItem {
             lines.push([{text:data.symbol,color:data.symbolColor},{text:" " + data.name + " ",color:"gray"},{text:itemValue,color:"white"}]);
         }
 
-        if (hasStat) {lines.push({text:" "});}
+        if (hasStat || hasAbility) {lines.push({text:" "});}
+
+        const rarityObject = getRarityObject(this.rarity);
+
+        // abilities
+        if (hasAbility)
+        {
+            for (let ability of this.abilities) 
+            {
+                const displayName = (ability.name === undefined || ability.name === "") ? "N/A" : ability.name;
+
+
+                const activation = (ability.activationType === undefined || ability.activationType === null) ? "N/A" : Activations.find(ac => ac.name === ability.activationType).display;
+
+                const description = (ability.abilityDescription === undefined || ability.abilityDescription === null) ? ["N/A"] : ability.abilityDescription.split("\\n");
+
+                const mana = (ability.manaCost === undefined) ? 0 : ability.manaCost;
+
+                lines.push([{text:displayName,color:"blue"},{text:" [",color:"yellow"},{text:activation,color:"gold"},{text:"]",color:"yellow"}]);
+                for (let abilDescLine of description) {
+                    lines.push({text:abilDescLine,color:"gray"});
+                }
+
+                let manaSymbol = statData.find(data => data.id == "mana").symbol;
+                let manaObject = mana === 0 ? {text:"NONE",color:"gold"} : {text:mana,"color":"white"};
+                lines.push([{text:manaSymbol+" Mana: ",color:"aqua"},manaObject]);
+                lines.push({text:" "});
+            }
+        }
+
 
         // enchants
-        lines.push([{text:"||",color:getRarityObject(this.rarity).color,obfuscated:true},{text:" Enchantments",color:getRarityObject(this.rarity).color}])
+        lines.push([{text:"||",color:rarityObject.color,obfuscated:true},{text:" Enchantments",color:rarityObject.color}])
 
-        let enchantSlotsLine = [{text:"||",color:getRarityObject(this.rarity).color,obfuscated:true}]
-        let slotCount = enchantSlotCounts[getRarityObject(this.rarity).name];
+        let enchantSlotsLine = [{text:"||",color:rarityObject.color,obfuscated:true}]
+        let slotCount = rarityObject.enchantSlots;
+
         for (let i = 0; i < slotCount; i++) {
             enchantSlotsLine.push({text:' [',color:"gray"});
             enchantSlotsLine.push({text:'❌',color:"white"});
@@ -154,5 +188,21 @@ class StatItem extends BaseItem {
         lines.push(enchantSlotsLine);
 
         return lines;
+    }
+}
+
+class ItemAbility extends MelyraElement {
+    abilityId;
+    activationType;
+    abilityDescription;
+    manaCost;
+
+    constructor(baseArgs, {abilityId = 0, activationType = null, abilityDescription = undefined, manaCost = 0}) {
+        super(baseArgs);
+
+        this.abilityId = abilityId;
+        this.activationType = activationType;
+        this.abilityDescription = abilityDescription;
+        this.manaCost = manaCost;
     }
 }

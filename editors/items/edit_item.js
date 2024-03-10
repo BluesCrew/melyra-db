@@ -5,19 +5,32 @@ document.getElementById("optionRare").style.color = getColorCodeHex(getRarityObj
 document.getElementById("optionEpic").style.color = getColorCodeHex(getRarityObject("Epic").color);
 document.getElementById("optionLegendary").style.color = getColorCodeHex(getRarityObject("Legendary").color);
 
-//// STATS
-// create stat inputs
+// input box creation
+function createInputBox(label, element_type, input_type) {
+    let box = document.createElement("div");
+    box.classList.add("inputbox");
 
+    let lab = document.createElement("div");
+    lab.innerHTML = label;
+
+    let elem = document.createElement(element_type);
+    if (element_type == "input") {
+        elem.type = input_type;
+    }
+    elem.classList.add("data-input");
+
+    box.appendChild(lab);
+    box.appendChild(elem);
+
+    return box;
+}
+
+// create stat inputs
 const statDataPart = document.getElementById("statItemData");
 
-for (let data of statData) {
-    let inputBox = document.createElement("div");
-    inputBox.classList.add("inputbox");
-
-    let label = document.createElement("div");
-    label.innerHTML = '<span style="color: '+getColorCodeHex(data.symbolColor)+'">'+data.symbol+' '+'</span>'+data.name+":";
-    label.classList.add("stat-label");
-    inputBox.appendChild(label);
+function createStatInput(data) {
+    let inputBox = createInputBox('<span style="color: '+getColorCodeHex(data.symbolColor)+'">'+data.symbol+' '+'</span>'+data.name+":", "input", "number")
+    inputBox.children.item(0).classList.add("stat-label");
 
     let firstInput = document.createElement("input");
     firstInput.id = data.id;
@@ -37,7 +50,11 @@ for (let data of statData) {
     button.textContent = "Toggle Range";
     inputBox.appendChild(button);
 
-    statDataPart.appendChild(inputBox);
+    document.getElementById("statData").appendChild(inputBox);
+}
+
+for (let data of statData) {
+    createStatInput(data);
 }
 
 // Range Toggles
@@ -48,6 +65,87 @@ for(let rangeButton of rangeButtons) {
         rangeSecondInput.classList.toggle("hidden");
     });
 }
+
+// Abilities
+const abilityBox = document.getElementById("abilitiesData");
+let currentAbilityCount = 0;
+let abilityBlocks = [];
+
+document.getElementById("addAbility").addEventListener("click", function() {
+    addAbilitySlot();
+});
+
+function addAbilitySlot() {
+    currentAbilityCount++;
+
+    let abilityBlock = document.createElement("div");
+    abilityBlock.classList.add("ability-data");
+    abilityBlock.id = "ability"+currentAbilityCount;
+    abilityBlock.style.borderColor = getColorCodeHex(getRarityObject(EDITED_ITEM.rarity).color);
+
+    let label = document.createElement("div");
+    label.style.textDecoration = "underline";
+    label.textContent = "ABILITY";
+
+    let abilityName = createInputBox("Ability Name:", "input", "text");
+    abilityName.classList.add("ability-input");
+    abilityName.children.item(1).id = "abilityName";
+    abilityName.children.item(1).addEventListener("change", function(event) {
+        updateItem();
+    });
+
+    let abilityId = createInputBox("Ability ID:", "input", "text");
+    abilityId.classList.add("ability-input");
+    abilityId.children.item(1).id = "abilityId";
+    abilityId.children.item(1).addEventListener("change", function(event) {
+        updateItem();
+    });
+
+    let abilityActivation = createInputBox("Activation Type:", "select", "");
+    abilityActivation.classList.add("ability-input");
+    let select = abilityActivation.children.item(1);
+    select.id = "abilityActivation";
+    select.addEventListener("change", function(event) {
+        updateItem();
+    });
+    select.innerHTML = "";
+    for (let option of Activations) {
+        let elem = document.createElement("option");
+        elem.value = option.name;
+        elem.textContent = option.name;
+        select.appendChild(elem);
+    }
+
+    let abilityDesc = createInputBox("Description:", "input", "text");
+    abilityDesc.classList.add("ability-input");
+    abilityDesc.children.item(1).id = "abilityDescription";
+    abilityDesc.children.item(1).addEventListener("change", function(event) {
+        updateItem();
+    });
+    
+    let abilityCost = createInputBox("Mana Cost:", "input", "number");
+    abilityCost.classList.add("ability-input");
+    abilityCost.children.item(1).id = "abilityManaCost";
+    abilityCost.children.item(1).addEventListener("change", function(event) {
+        updateItem();
+    });
+
+    let removeAbilityButton = document.createElement("button");
+    removeAbilityButton.textContent = "-";
+    removeAbilityButton.classList.add("ability-count-change");
+    removeAbilityButton.id = "removeAbility"+currentAbilityCount;
+    removeAbilityButton.addEventListener("click", function() {
+        abilityBox.removeChild(abilityBlock);
+        abilityBlocks.splice(abilityBlocks.indexOf(abilityBlock), 1);
+        updateItem();
+    });
+
+    abilityBlock.append(label, abilityName, abilityId, abilityActivation, abilityDesc, abilityCost, removeAbilityButton);
+    abilityBox.appendChild(abilityBlock);
+
+    abilityBlocks.push(abilityBlock);
+}
+
 
 // Default Values
 const internalId = document.getElementById("internalId"); 
@@ -90,6 +188,10 @@ function getStatInput(statId) {
 
 rarity.onchange = (event) => {
     rarity.style.color = getColorCodeHex(getRarityObject(event.target.value).color);
+    for(let block of abilityBlocks){
+        block.style.borderColor = rarity.style.color;
+    }
+    
 };
 
 internalId.value = "new_item";
@@ -125,8 +227,12 @@ function importItem(item) {
     versionId.value = item.versionNumber;
     minecraftId.value = item.minecraftId;
     itemName.value = item.name;
+
     rarity.value = item.rarity;
+    rarity.style.color = getColorCodeHex(getRarityObject(item.rarity).color);
+
     type.value = item.type;
+
     if (item.description === undefined){
         description.value = "";
     } else {
@@ -152,6 +258,8 @@ function importItem(item) {
                 document.querySelector(".range-first-input#"+data.id).value = statValue;
             }
         }
+
+        currentAbilityCount = 0;
     }
 
     updateItem();
@@ -180,6 +288,26 @@ function updateItem() {
     else 
     {
         statDataPart.style.display = "";
+
+        let abilities = [];
+        for (let abilityBlock of abilityBlocks) 
+        {
+            children = abilityBlock.children;
+
+            ability = new ItemAbility(
+                {
+                    name: children[1].children[1].value,
+                    internalId: children[2].children[1].value
+                },
+                {
+                    activationType: children[3].children[1].value,
+                    abilityDescription: children[4].children[1].value,
+                    manaCost: children[5].children[1].value
+                }
+            );
+
+            abilities.push(ability);
+        }
 
         EDITED_ITEM = new StatItem(
             {
@@ -214,11 +342,21 @@ function updateItem() {
             },
             {
                 type: type.value,
-                upgradable: upgradable.checked
+                upgradable: upgradable.checked,
+                abilities: abilities
             }
         );
     }
 
+    // update ability activation selects
+    updateActivationSelects();
+
     // finally, update preview
     updatePreview(EDITED_ITEM);
+}
+
+function updateActivationSelects() {
+    const abilitySelects = document.getElementsByClassName("ability-activation-select");
+
+
 }
