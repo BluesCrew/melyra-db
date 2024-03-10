@@ -132,7 +132,7 @@
     background-color: var(--accent3-color);
 }
 
-#statItemData {
+#statData {
     min-height: max-content;
     display: flex;
     flex-direction: column;

@@ -187,12 +187,26 @@ function getStatInput(statId) {
 }
 
 rarity.onchange = (event) => {
-    rarity.style.color = getColorCodeHex(getRarityObject(event.target.value).color);
+    updateColors(getColorCodeHex(getRarityObject(event.target.value).color));
+};
+
+function updateColors(colorHex) {
+    rarity.style.color = colorHex;
+
     for(let block of abilityBlocks){
         block.style.borderColor = rarity.style.color;
     }
-    
-};
+
+    let labels = document.getElementsByClassName("group-label");
+    for(let label of labels) {
+        label.style.color = rarity.style.color;
+    }
+
+    let inputBoxes = document.getElementsByClassName("inputbox");
+    for(let box of inputBoxes) {
+        box.style.borderColor = hexToRgbA(colorHex, 0.25);
+    }
+}
 
 internalId.value = "new_item";
 versionId.value = 1;
@@ -263,6 +277,8 @@ function importItem(item) {
     }
 
     updateItem();
+
+    updateColors(getColorCodeHex(getRarityObject(item.rarity).color));
 
     setTimeout(function() {updatePreview(EDITED_ITEM)}, 10);
 }
