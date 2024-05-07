@@ -4,8 +4,8 @@
     
     --primary-color: #FFFFFF;
     --primary-color-transparent: rgba(255, 255, 255, 0.1);
-    --accent1-color: #b93794;
-    --accent2-color: #82c7b3;
+    --accent1-color: #932072;
+    --accent2-color: #b6dfca;
     --accent3-color: #69a457;
 
     --footer-height: 3.5em;
@@ -259,6 +259,8 @@ body {
     width: 125%;
     transition: max-height 0.5s ease;
     overflow: hidden;
+
+    white-space: pre;
 }
 
 

@@ -25,6 +25,17 @@ a = new StatItem(
     },
     {
         type: "Ranged",
+        abilities: [new ItemAbility(
+            {
+                name: "Throwing",
+                internalId: "beef",
+            },
+            {
+                activationType: "Right-click",
+                abilityDescription: "Throws the beef for\\nmassive damage.",
+                manaCost: 20
+            }
+        )]
     }
 );
 
@@ -37,7 +48,7 @@ b = new StatItem(
         isCustomTexture: false,
         rarity: "Epic",
         minecraftId: "birch_boat",
-        description: "Test1\\nTest2\\nTest3"
+        description: "Most powerful boat to exist.\\n \\nIt was made to be able to travel to the most\\ndangerous islands."
     },
     {
         strength: 25,
@@ -45,6 +56,17 @@ b = new StatItem(
     },
     {
         type: "Melee",
+        abilities: [new ItemAbility(
+            {
+                name: "Navigation",
+                internalId: "boat_ability",
+            },
+            {
+                activationType: "Sneak Double",
+                abilityDescription: "Use near an ocean to navigate\\nto a magical island.",
+                manaCost: 0
+            }
+        )]
     }
 );
 

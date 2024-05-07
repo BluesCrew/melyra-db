@@ -15,7 +15,7 @@ function updatePreview(item) {
 
 function setIcon(item) {
     // TODO
-    if ((item.minecraftId === "minecraft:player_head" || item.minecraftId === "player_head")) return;
+    if (item.minecraftId.includes("player_head")) return;
 
     Object.assign(
         new Image(), {

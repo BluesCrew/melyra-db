@@ -143,8 +143,65 @@ function addAbilitySlot() {
     abilityBox.appendChild(abilityBlock);
 
     abilityBlocks.push(abilityBlock);
+
+    return abilityBlock;
 }
 
+// Upgrades Material Costs
+const materialChooseBox = document.getElementById("materialChoosingBox");
+materialChooseBox.style.display = "none";
+
+const costsBox = document.getElementById("costsBox");
+costsBox.style.display = "none";
+
+const closeImporter = document.getElementById("closeImport");
+closeImporter.addEventListener("click", function(event) {
+    materialChooseBox.style.display = "none";
+});
+
+function generateCostBox(levelTo) {
+    parentBox = document.createElement("div");
+    parentBox.classList.add("cost-box");
+    parentBox.id = "lvl"+levelTo;
+
+    label = document.createElement("p");
+    label.classList.add("label");
+    label.style.width = "80px";
+    label.style.fontSize = "15px";
+    label.innerText = "Level "+(levelTo-1)+" → "+levelTo;
+
+    materialId = createInputBox("Material ID", "input", "text");
+    materialId.children.item(1).id = levelTo+"_materialCostId";
+    materialId.children.item(1).addEventListener("change", function(event) {
+        updateItem();
+    });
+    materialId.children.item(1).style.fontSize = "12px";
+
+    import_button = document.createElement("button");
+    image = document.createElement("img");
+    image.src = "/melyra-db/assets/file_icon.png";
+    import_button.append(image);
+    import_button.classList.add("material-import");
+    import_button.addEventListener("click", function(event) {
+        materialChooseBox.style.display = "block";
+    })
+    materialId.append(import_button);
+
+    materialAmount = createInputBox("Amount", "input", "number");
+    materialAmount.children.item(1).id = levelTo+"_materialCostAmount";
+    materialAmount.children.item(1).addEventListener("change", function(event) {
+        updateItem();
+    });
+    materialAmount.children.item(1).style.fontSize = "12px";
+
+    parentBox.append(label, materialId, materialAmount);
+
+    costsBox.appendChild(parentBox);
+}
+
+for (let lvl = 1; lvl <= 9; lvl++) {
+    generateCostBox(lvl);
+}
 
 // Default Values
 const internalId = document.getElementById("internalId"); 
@@ -204,6 +261,13 @@ function updateColors(colorHex) {
     let inputBoxes = document.getElementsByClassName("inputbox");
     for(let box of inputBoxes) {
         box.style.borderColor = hexToRgbA(colorHex, 0.25);
+    }
+
+    document.getElementById("costsBox").style.borderColor = rarity.style.color;
+
+    let costBoxes = document.getElementsByClassName("cost-box");
+    for(let costBox of costBoxes) {
+        costBox.style.borderColor = hexToRgbA(colorHex, 0.25);
     }
 }
 
@@ -273,6 +337,14 @@ function importItem(item) {
         }
 
         currentAbilityCount = 0;
+        for (let abil of item.abilities) {
+            var block = addAbilitySlot();
+            block.children.item(1).children.item(1).value = abil.name;
+            block.children.item(2).children.item(1).value = abil.internalId;
+            block.children.item(3).children.item(1).value = abil.activationType;
+            block.children.item(4).children.item(1).value = abil.abilityDescription;
+            block.children.item(5).children.item(1).value = abil.manaCost;
+        }
     }
 
     updateItem();
@@ -322,6 +394,11 @@ function updateItem() {
             );
 
             abilities.push(ability);
+        }
+
+        costsBox.style.display = "none";
+        if (upgradable.checked) {
+            costsBox.style.display = "";
         }
 
         EDITED_ITEM = new StatItem(

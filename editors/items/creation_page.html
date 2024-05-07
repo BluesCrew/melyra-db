@@ -99,14 +99,28 @@
                         +
                     </button>
                 </div>
+                <div class="group-label">Upgrades</div>
                 <div class="inputbox">
                     <div>Upgradable: </div>
                     <input type="checkbox" class="data-input", id="upgradable">
                 </div>
+                <div class="costs-box" id="costsBox">
+                </div>
                 <div id="statData">
                     <div class="group-label">Stat Data</div>
                 </div>
+            </div>
 
+
+            <div class="material-chooser", id="materialChoosingBox">
+                <div style="display: flex; flex-direction: row; align-items: center; gap:1em;">
+                    <h3 style="padding-left: 1em;">Choose Material</h3>
+                    <button class="close-material-import", id="closeImport">X</button>
+                </div>
+                <div class="separator"></div>
+                <div class="material-chooser-grid">
+                    <button class="material-import-option"></button>
+                </div>
             </div>
         </div>
     </div>
