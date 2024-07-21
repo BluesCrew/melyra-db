@@ -32,7 +32,7 @@ class BaseItem extends MelyraElement {
         if (!isCustomTexture) 
         {
             minecraftId = minecraftId.replace("minecraft:", "");
-            this.sprite = "assets/item/" + minecraftId + ".png";
+            this.sprite = "/melyra-db/assets/item/" + minecraftId + ".png";
         }
     }
 

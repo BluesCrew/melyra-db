@@ -27,7 +27,7 @@ function setIcon(item) {
                 ctx.drawImage(this, 0, 0, canvas.width, canvas.height)
             },
             onerror: function () {
-                this.src = "assets/item/barrier.png"
+                this.src = "/melyra-db/assets/item/barrier.png"
             }
         }
     );

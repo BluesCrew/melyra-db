@@ -4,7 +4,7 @@ function populate_list(item) {
     let newElem = document.createElement("button");
     newElem.classList.add("melyra-element");
     newElem.addEventListener("click", function() {
-        document.location.href = "editors/items/creation_page.html?data="+encodeURIComponent(item.internalId);
+        document.location.href = "/melyra-db/editors/items/creation_page.html?data="+encodeURIComponent(item.internalId);
     });
 
     let newName = document.createElement("p");
@@ -35,7 +35,7 @@ function populate_lists() {
     }
     
     document.getElementById("newItemButton").addEventListener("click", function() {
-        document.location.href = "editors/items/creation_page.html?data=$";
+        document.location.href = "/melyra-db/editors/items/creation_page.html?data=$";
     })
 }
 

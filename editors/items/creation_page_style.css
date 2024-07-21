@@ -37,7 +37,7 @@
 
 .preview-tooltip {
     font-family: 'MinecraftiaRegular';
-    border-image-source: url("assets/tooltip_texture.png");
+    border-image-source: url("/melyra-db/assets/tooltip_texture.png");
     border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
     border-image-width: 8px 8px;
     color: var(--primary-color);
