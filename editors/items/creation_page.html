@@ -36,96 +36,94 @@
     <div class="main">
         <h2>Melyra Database Editor</h2>
         <h3>Item Editor</h3>
-        <div class="previewing-area">
-            <canvas id="previewCanvas">
+        <div class="container">
+            <div class="previewing-area">
+                <canvas id="previewCanvas">
+                    
+                </canvas>
+                <div class="preview-tooltip", id="previewTooltip">
                 
-            </canvas>
-            <div class="preview-tooltip", id="previewTooltip">
-            
-            </div>
-        </div>
-        <div class="editing-area">
-            <div class="group-label">Internal</div>
-            <div class="inputbox">
-                <div>Internal ID: </div>
-                <input type="text" class="data-input" placeholder="melyra:seared_eyeball", id="internalId">
-            </div>
-            <div class="inputbox">
-                <div>Version ID: </div>
-                <input type="number" class="data-input" placeholder="1", id="versionId">
-            </div>
-            <div class="inputbox">
-                <div>Minecraft ID: </div>
-                <input type="text" class="data-input" placeholder="minecraft:pitcher_pod", id="minecraftId">
-            </div>
-            <div class="group-label">Common Data</div>
-            <div class="inputbox">
-                <div>Name: </div>
-                <input type="text" class="data-input" placeholder="Seared Eyeball", id="itemName">
-            </div>
-            <div class="inputbox">
-                <div>Rarity: </div>
-                <select class="data-input", id="raritySelect">
-                    <option value="Common" id="optionCommon">Common</option>
-                    <option value="Uncommon" id="optionUncommon">Uncommon</option>
-                    <option value="Rare" id="optionRare">Rare</option>
-                    <option value="Epic" id="optionEpic">Epic</option>
-                    <option value="Legendary" id="optionLegendary">Legendary</option>
-                </select>
-            </div>
-            <div class="inputbox">
-                <div>Type: </div>
-                <select class="data-input", id="typeSelect">
-                    <option value="Helmet">Helmet</option>
-                    <option value="Chestplate">Chestplate</option>
-                    <option value="Leggings">Leggings</option>
-                    <option value="Boots">Boots</option>
-                    <option value="Melee">Melee</option>
-                    <option value="Ranged">Ranged</option>
-                    <option value="Foraging">Foraging</option>
-                    <option value="Mining">Mining</option>
-                    <option value="Material">Material</option>
-                </select>
-            </div>
-            <div class="inputbox">
-                <div>Description: </div>
-                <input type="text" class="data-input" placeholder="Found in the depths of \nthe poisioned cave.", id="description">
-            </div>
-            <div id="statItemData">
-                <div id="abilitiesData">
-                    <div class="group-label">Abilities</div>
-                    <div>Info: Putting the same ID as another ability will copy its behavior. <br>You can safely override the other data.</div>
-                    <button class="ability-count-change", id="addAbility">
-                        +
-                    </button>
                 </div>
-                <div class="group-label">Upgrades</div>
+            </div>
+            <div class="editing-area">
+                <div class="group-label">Internal</div>
                 <div class="inputbox">
-                    <div>Upgradable: </div>
-                    <input type="checkbox" class="data-input", id="upgradable">
+                    <div>Internal ID: </div>
+                    <input type="text" class="data-input" placeholder="melyra:seared_eyeball", id="internalId">
                 </div>
-                <div class="costs-box" id="costsBox">
+                <div class="inputbox">
+                    <div>Version ID: </div>
+                    <input type="number" class="data-input" placeholder="1", id="versionId">
                 </div>
-                <div id="statData">
-                    <div class="group-label">Stat Data</div>
+                <div class="inputbox">
+                    <div>Minecraft ID: </div>
+                    <input type="text" class="data-input" placeholder="minecraft:pitcher_pod", id="minecraftId">
                 </div>
-            </div>
-
-
-            <div class="material-chooser", id="materialChoosingBox">
-                <div style="display: flex; flex-direction: row; align-items: center; gap:1em;">
-                    <h3 style="padding-left: 1em;">Choose Material</h3>
-                    <button class="close-material-import", id="closeImport">X</button>
+                <div class="group-label">Common Data</div>
+                <div class="inputbox">
+                    <div>Name: </div>
+                    <input type="text" class="data-input" placeholder="Seared Eyeball", id="itemName">
                 </div>
-                <div class="separator"></div>
-                <div class="material-chooser-grid">
-                    <button class="material-import-option"></button>
+                <div class="inputbox">
+                    <div>Rarity: </div>
+                    <select class="data-input", id="raritySelect">
+                        <option value="Common" id="optionCommon">Common</option>
+                        <option value="Uncommon" id="optionUncommon">Uncommon</option>
+                        <option value="Rare" id="optionRare">Rare</option>
+                        <option value="Epic" id="optionEpic">Epic</option>
+                        <option value="Legendary" id="optionLegendary">Legendary</option>
+                    </select>
+                </div>
+                <div class="inputbox">
+                    <div>Type: </div>
+                    <select class="data-input", id="typeSelect">
+                        <option value="Helmet">Helmet</option>
+                        <option value="Chestplate">Chestplate</option>
+                        <option value="Leggings">Leggings</option>
+                        <option value="Boots">Boots</option>
+                        <option value="Melee">Melee</option>
+                        <option value="Ranged">Ranged</option>
+                        <option value="Foraging">Foraging</option>
+                        <option value="Mining">Mining</option>
+                        <option value="Material">Material</option>
+                    </select>
+                </div>
+                <div class="inputbox">
+                    <div>Description: </div>
+                    <input type="text" class="data-input" placeholder="Found in the depths of \nthe poisioned cave.", id="description">
+                </div>
+                <div id="statItemData">
+                    <div id="abilitiesData">
+                        <div class="group-label">Abilities</div>
+                        <div>Info: Putting the same ID as another ability will copy its behavior. <br>You can safely override the other data.</div>
+                        <button class="ability-count-change", id="addAbility">
+                            +
+                        </button>
+                    </div>
+                    <div class="group-label">Upgrades</div>
+                    <div class="inputbox">
+                        <div>Upgradable: </div>
+                        <input type="checkbox" class="data-input", id="upgradable">
+                    </div>
+                    <div class="costs-box" id="costsBox">
+                    </div>
+                    <div id="statData">
+                        <div class="group-label">Stat Data</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="bottombox">
-        <p>© CMDred</p>
+
+        <div class="material-chooser", id="materialChoosingBox">
+            <div style="display: flex; flex-direction: row; align-items: center; gap:1em;">
+                <h3 style="padding-left: 1em;">Choose Material</h3>
+                <button class="close-material-import", id="closeImport"><img src="/melyra-db/assets/item/barrier.png" style="width: 95%; image-rendering: pixelated;"></button>
+            </div>
+            <div class="separator"></div>
+            <div class="material-chooser-grid">
+                <button class="material-import-option"></button>
+            </div>
+        </div>
     </div>
 
     <script src="data.js"></script>

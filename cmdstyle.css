@@ -4,9 +4,10 @@
     
     --primary-color: #FFFFFF;
     --primary-color-transparent: rgba(255, 255, 255, 0.1);
-    --accent1-color: #932072;
-    --accent2-color: #b6dfca;
+    --accent1-color: #42bfe6;
+    --accent2-color: #82c7b3;
     --accent3-color: #69a457;
+    --accent3-color-transparent: rgba(105, 164, 87, 0.5);
 
     --footer-height: 3.5em;
 }
@@ -98,7 +99,7 @@ body {
 
     position: absolute;
     top: 100%;
-    background-color: var(--accent2-color);
+    background-color: var(--accent3-color-transparent);
     min-width: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 5;
@@ -148,6 +149,7 @@ body {
     align-items: center;
     flex-direction: column;
     min-height: fit-content;
+    height: 100%;
 }
 
 .main h1 {

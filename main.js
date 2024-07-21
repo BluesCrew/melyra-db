@@ -130,13 +130,15 @@ class StatItem extends BaseItem {
 
             if (Array.isArray(itemValue)) {
                 if (data.isPercentage){
-                    itemValue = "+" + itemValue[0] + "% - +" + itemValue[1] + "%";
+                    if (itemValue > 0) itemValue = "+" + itemValue[0] + "% - +" + itemValue[1] + "%";
+                    else itemValue = itemValue[0] + "% - " + itemValue[1] + "%";
                 }
                 else {
                     itemValue = itemValue[0] + " - " + itemValue[1];
                 }   
             } else if (data.isPercentage){
-                itemValue = "+" + itemValue + "%";
+                if (itemValue > 0) itemValue = "+" + itemValue + "%";
+                else itemValue = itemValue + "%";
             }
             
             lines.push([{text:data.symbol,color:data.symbolColor},{text:" " + data.name + " ",color:"gray"},{text:itemValue,color:"white"}]);
