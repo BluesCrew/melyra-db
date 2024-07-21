@@ -191,20 +191,20 @@ body {
 
 @font-face {
     font-family: 'MinecraftiaRegular';
-    src: url('/melyra-db/assets/minecraft_font.ttf');
+    src: url('assets/minecraft_font.ttf');
 }
 
 
 @font-face {
     font-family: 'MontserratItalic';
-    src: url('/melyra-db/assets/montserrat_italic.ttf');
+    src: url('assets/montserrat_italic.ttf');
 }
 
 
 
 @font-face {
     font-family: 'Montserrat';
-    src: url('/melyra-db/assets/montserrat.ttf');
+    src: url('assets/montserrat.ttf');
 }
 
 
@@ -236,7 +236,7 @@ body {
 
 .melyra-element-tooltip {
     font-family: 'MinecraftiaRegular';
-    border-image-source: url("/melyra-db/assets/tooltip_texture.png");
+    border-image-source: url("assets/tooltip_texture.png");
     border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
     border-image-width: 15px 16px;
     color: var(--primary-color);

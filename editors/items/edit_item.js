@@ -179,7 +179,7 @@ function generateCostBox(levelTo) {
 
     import_button = document.createElement("button");
     image = document.createElement("img");
-    image.src = "/melyra-db/assets/file_icon.png";
+    image.src = "assets/file_icon.png";
     import_button.append(image);
     import_button.classList.add("material-import");
     import_button.addEventListener("click", function(event) {
