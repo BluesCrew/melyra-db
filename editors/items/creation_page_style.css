@@ -20,8 +20,6 @@
 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     gap: 3px;
 
@@ -33,6 +31,10 @@
 .previewing-area::-webkit-scrollbar {
     width: 0;
     height: 0;
+}
+.previewing-area *{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .preview-tooltip {
