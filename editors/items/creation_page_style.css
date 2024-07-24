@@ -188,45 +188,6 @@
     background-color: var(--primary-color);
 }
 
-.material-chooser {
-    position: fixed;
-
-    --mat-chooser-width: 700px;
-    --mat-chooser-height: 500px;
-
-    width: var(--mat-chooser-width);
-    height: var(--mat-chooser-height);
-
-    left: calc(50% - calc(var(--mat-chooser-width) / 2));
-    top: calc(50% - calc(var(--mat-chooser-height) / 2));
-
-    border: solid 2px;
-    border-color: var(--primary-color);
-
-    background-color: var(--background2-color);
-
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-    border-radius: 4px;
-
-    display: none;
-}
-
-.material-chooser-grid {
-    margin: 10px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 80px);
-    gap: 32px;
-    grid-auto-rows: minmax(80px, auto);
-    align-items: normal;
-}
-
-.material-chooser-grid .material-import-option {
-    background-color: var(--primary-color-transparent);;
-}
-
 .costs-box {
     margin-top: 1em;
     border: solid 1px;
@@ -272,6 +233,48 @@
     height: 100%;
 }
 
+.material-chooser {
+    position: fixed;
+
+    --mat-chooser-width: 700px;
+    --mat-chooser-height: 500px;
+
+    width: var(--mat-chooser-width);
+    height: var(--mat-chooser-height);
+
+    left: calc(50% - calc(var(--mat-chooser-width) / 2));
+    top: calc(50% - calc(var(--mat-chooser-height) / 2));
+
+    border: solid 2px;
+    border-color: var(--primary-color);
+
+    background-color: var(--background2-color);
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    border-radius: 4px;
+
+    z-index: 10;
+
+    display: none;
+}
+
+.material-chooser-grid {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 80px);
+    gap: 32px;
+    grid-auto-rows: minmax(80px, auto);
+    align-items: normal;
+}
+
+.material-chooser-grid .material-import-option {
+    background-color: var(--primary-color-transparent);;
+}
+
+
 .close-material-import {
     background: var(--accent1-color);
     border: 2px solid;
@@ -290,4 +293,24 @@
     border: 2px solid;
     border-color: var(--background-color);
     border-radius: 3px;
+    width: 98px;
+    height: 98px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: border-color 0.25s;
+}
+
+.material-import-option:hover {
+    border-color: var(--accent1-color);
+
+    transition: border-color 0.25s;
+}
+
+.material-import-image {
+    image-rendering: pixelated;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
 }

@@ -79,9 +79,24 @@ c = new BaseItem(
         isCustomTexture: false,
         rarity: "Legendary",
         minecraftId: "silence_armor_trim_smithing_template",
-        type: "Material"
+        type: "Material",
+        description: "Can be used to upgrade items up to +8."
+    }
+);
+
+d = new BaseItem(
+    {
+        name: "Upgrade Gem",
+        internalId: "upgrade_gem",
+    }, 
+    {
+        isCustomTexture: false,
+        rarity: "Epic",
+        minecraftId: "diamond",
+        type: "Material",
+        description: "Can be used to upgrade items up to +5."
     }
 );
 
 allItems = [];
-allItems.push(a, b, c);
+allItems.push(a, b, c, d);

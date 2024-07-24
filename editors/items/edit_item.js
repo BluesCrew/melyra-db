@@ -158,6 +158,28 @@ const closeImporter = document.getElementById("closeImport");
 closeImporter.addEventListener("click", function(event) {
     materialChooseBox.style.display = "none";
 });
+const materialChoicesParent = document.getElementById("materialOptions");
+
+let editingMaterialCostIndex = -1;
+
+function appendToMaterialImporter(materialItem) {
+    parentButton = document.createElement("button");
+    parentButton.classList.add("material-import-option");
+    parentButton.id = materialItem.name+"-chooser";
+    parentButton.addEventListener("click", function(event) {
+        materialChooseBox.style.display = "none";
+        costsBox.children.item(editingMaterialCostIndex).children.item(1).children.item(1).value = materialItem.internalId;
+    });
+    
+    image = document.createElement("img");
+    image.src = materialItem.sprite;
+    image.title = materialItem.name;
+    image.classList.add("material-import-image");
+
+    parentButton.append(image);
+
+    materialChoicesParent.appendChild(parentButton)
+}
 
 function generateCostBox(levelTo) {
     parentBox = document.createElement("div");
@@ -184,6 +206,7 @@ function generateCostBox(levelTo) {
     import_button.classList.add("material-import");
     import_button.addEventListener("click", function(event) {
         materialChooseBox.style.display = "block";
+        editingMaterialCostIndex = levelTo-1;
     })
     materialId.append(import_button);
 
@@ -201,6 +224,12 @@ function generateCostBox(levelTo) {
 
 for (let lvl = 1; lvl <= 9; lvl++) {
     generateCostBox(lvl);
+}
+
+for (let item of allItems) {
+    if (item.type === "Material") {
+        appendToMaterialImporter(item);
+    }
 }
 
 // Default Values
