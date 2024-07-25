@@ -131,7 +131,7 @@ function addAbilitySlot() {
 
     let removeAbilityButton = document.createElement("button");
     removeAbilityButton.textContent = "-";
-    removeAbilityButton.classList.add("ability-count-change");
+    removeAbilityButton.classList.add("ability-count-change", "changing-button");
     removeAbilityButton.id = "removeAbility"+currentAbilityCount;
     removeAbilityButton.addEventListener("click", function() {
         abilityBox.removeChild(abilityBlock);
@@ -154,13 +154,19 @@ materialChooseBox.style.display = "none";
 const costsBox = document.getElementById("costsBox");
 costsBox.style.display = "none";
 
+let material_id_input_boxes = []
+
 const closeImporter = document.getElementById("closeImport");
 closeImporter.addEventListener("click", function(event) {
     materialChooseBox.style.display = "none";
 });
 const materialChoicesParent = document.getElementById("materialOptions");
 
-let editingMaterialCostIndex = -1;
+let materialInputImporting;
+let material_level_costs = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+let currentInputIndex = 0;
+
+let allMaterialInputs = []
 
 function appendToMaterialImporter(materialItem) {
     parentButton = document.createElement("button");
@@ -168,7 +174,7 @@ function appendToMaterialImporter(materialItem) {
     parentButton.id = materialItem.name+"-chooser";
     parentButton.addEventListener("click", function(event) {
         materialChooseBox.style.display = "none";
-        costsBox.children.item(editingMaterialCostIndex).children.item(1).children.item(1).value = materialItem.internalId;
+        materialInputImporting.children.item(0).children.item(1).value = materialItem.internalId;
     });
     
     image = document.createElement("img");
@@ -183,7 +189,7 @@ function appendToMaterialImporter(materialItem) {
 
 function generateCostBox(levelTo) {
     parentBox = document.createElement("div");
-    parentBox.classList.add("cost-box");
+    parentBox.classList.add("level-box");
     parentBox.id = "lvl"+levelTo;
 
     label = document.createElement("p");
@@ -192,34 +198,74 @@ function generateCostBox(levelTo) {
     label.style.fontSize = "15px";
     label.innerText = "Level "+(levelTo-1)+" → "+levelTo;
 
-    materialId = createInputBox("Material ID", "input", "text");
-    materialId.children.item(1).id = levelTo+"_materialCostId";
+    add_button = document.createElement("button");
+    add_button.classList.add("add-material", "changing-button");
+    add_button.textContent = "+";
+    add_button.style.width = "32px";
+    add_button.style.height = "32px";
+    add_button.addEventListener("click", function(event) {
+        generateMaterialInputPart(levelTo);
+        updateColors(getColorCodeHex(getRarityObject(EDITED_ITEM.rarity).color));
+    });
+
+    input_holder = document.createElement("div");
+    input_holder.classList.add("material-input-holder");
+
+    parentBox.append(label, add_button, input_holder);
+
+    material_level_costs[levelTo-1] = input_holder;
+    generateMaterialInputPart(levelTo);
+
+    costsBox.appendChild(parentBox);
+}
+
+function generateMaterialInputPart(levelIndex) {
+    let parent = document.createElement("div");
+    parent.classList.add("cost-box");
+    parent.id = levelIndex;
+
+    let materialId = createInputBox("Material ID", "input", "text");
+    materialId.children.item(1).id = levelIndex+"_materialCostId";
     materialId.children.item(1).addEventListener("change", function(event) {
         updateItem();
     });
     materialId.children.item(1).style.fontSize = "12px";
 
-    import_button = document.createElement("button");
+    let import_button = document.createElement("button");
     image = document.createElement("img");
     image.src = "/melyra-db/assets/file_icon.png";
     import_button.append(image);
     import_button.classList.add("material-import");
     import_button.addEventListener("click", function(event) {
         materialChooseBox.style.display = "block";
-        editingMaterialCostIndex = levelTo-1;
+        materialInputImporting = parent;
     })
     materialId.append(import_button);
 
-    materialAmount = createInputBox("Amount", "input", "number");
-    materialAmount.children.item(1).id = levelTo+"_materialCostAmount";
+    let materialAmount = createInputBox("Amount", "input", "number");
+    materialAmount.children.item(1).id = levelIndex+"_materialCostAmount";
     materialAmount.children.item(1).addEventListener("change", function(event) {
         updateItem();
     });
     materialAmount.children.item(1).style.fontSize = "12px";
 
-    parentBox.append(label, materialId, materialAmount);
+    let remove_button = document.createElement("button");
+    remove_button.textContent = "-";
+    remove_button.style.width = "32px";
+    remove_button.style.height = "32px";
+    remove_button.classList.add("remove-material", "changing-button");
+    remove_button.addEventListener("click", function(event) {
+        if (allMaterialInputs.length <= 9)
+            return;
 
-    costsBox.appendChild(parentBox);
+        material_level_costs[levelIndex-1].removeChild(parent);
+        allMaterialInputs.splice(allMaterialInputs.indexOf(parent), 1);
+    })
+
+    parent.append(materialId, import_button, materialAmount, remove_button);
+    material_level_costs[levelIndex-1].appendChild(parent);
+
+    allMaterialInputs.push(parent);
 }
 
 for (let lvl = 1; lvl <= 9; lvl++) {
@@ -297,6 +343,11 @@ function updateColors(colorHex) {
     let costBoxes = document.getElementsByClassName("cost-box");
     for(let costBox of costBoxes) {
         costBox.style.borderColor = hexToRgbA(colorHex, 0.25);
+    }
+
+    let levelBoxes = document.getElementsByClassName("level-box");
+    for(let levelBox of levelBoxes) {
+        levelBox.style.borderColor = hexToRgbA(colorHex, 0.5);
     }
 }
 
@@ -430,6 +481,16 @@ function updateItem() {
             costsBox.style.display = "";
         }
 
+        let upgrades = [[], [], [], [], [], [], [], [], []];
+        for (let matInput of allMaterialInputs) {
+            amount = 0;
+            if (matInput.children[2].children[1].value !== '') {
+                amount = parseInt(matInput.children[2].children[1].value);
+            }
+
+            upgrades[parseInt(matInput.id)-1].push({material_id: matInput.children[0].children[1].value, amount: amount})
+        }
+
         EDITED_ITEM = new StatItem(
             {
                 name: itemName.value,
@@ -464,7 +525,8 @@ function updateItem() {
             {
                 type: type.value,
                 upgradable: upgradable.checked,
-                abilities: abilities
+                abilities: abilities,
+                upgrade_costs: upgrades
             }
         );
     }

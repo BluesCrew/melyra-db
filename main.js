@@ -85,6 +85,7 @@ class StatItem extends BaseItem {
     }
     upgradable = true;
     abilities = [];
+    upgrade_cost = [];
 
     constructor(baseArgs, baseArgs2, statArgs, {type = "Melee", upgradable = true, abilities = null}) {
         super(baseArgs, baseArgs2);
