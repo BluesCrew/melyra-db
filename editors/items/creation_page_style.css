@@ -104,6 +104,30 @@
     left: 5px;
 }
 
+.hide {
+    display: none;
+}
+
+.random-name-toggle {
+    background-color: var(--background-color);
+    border: solid 1px;
+    border-color: var(--background2-color);
+    padding: 0;
+    margin-right: 0.5em;
+    width: 32px;
+    height: 32px;
+    aspect-ratio: 1 / 1;
+}
+
+.button-toggled {
+    background-color: var(--background2-color);
+    border-color: var(--accent1-color)
+}
+
+.random-name-toggle img {
+    width: 100%;
+    height: 100%;
+}
 
 .stat-label {
     margin-left: 0;

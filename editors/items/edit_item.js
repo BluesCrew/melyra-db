@@ -25,6 +25,19 @@ function createInputBox(label, element_type, input_type) {
     return box;
 }
 
+// random names toggle
+const randomNameToggle = document.getElementById("randomNameToggle")
+const randomNameInput = document.getElementById("randomNameInput")
+randomNameInput.classList.toggle("hide");
+let randomNameToggled = false;
+
+randomNameToggle.addEventListener("click", function(event) {
+    randomNameInput.classList.toggle("hide");
+    randomNameToggle.classList.toggle("button-toggled");
+    randomNameToggled = !randomNameToggled;
+    updateItem();
+})
+
 // create stat inputs
 const statDataPart = document.getElementById("statItemData");
 
@@ -448,7 +461,8 @@ function updateItem() {
             {
                 description: description.value,
                 rarity: rarity.value,
-                minecraftId: minecraftId.value
+                minecraftId: minecraftId.value,
+                randomNames: randomNameToggled ? randomNameInput.children.item(1).value.split(";") : null
             }
         );
     }
@@ -500,7 +514,8 @@ function updateItem() {
             {
                 description: description.value,
                 rarity: rarity.value,
-                minecraftId: minecraftId.value
+                minecraftId: minecraftId.value,
+                randomNames: randomNameToggled ? randomNameInput.children.item(1).value.split(";") : null
             },
             {
                 health: getStatInput("health"),

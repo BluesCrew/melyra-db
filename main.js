@@ -17,8 +17,9 @@ class BaseItem extends MelyraElement {
     sprite;
     minecraftId;
     type;
+    randomNames;
 
-    constructor(baseArgs, {isCustomTexture = false, minecraftId = undefined, description=undefined, rarity = null, model = null})
+    constructor(baseArgs, {isCustomTexture = false, minecraftId = undefined, description=undefined, rarity = null, model = null, randomNames = null})
     {
         super(baseArgs);
         
@@ -27,6 +28,15 @@ class BaseItem extends MelyraElement {
         this.model = model;
         this.minecraftId = minecraftId;
         this.type = "Material";
+        this.randomNames = null;
+        if (Array.isArray(randomNames) && randomNames.length > 0 && !(randomNames[0] == '' && randomNames.length == 1)) {
+            this.randomNames = []
+            for (let name of randomNames) {
+                if (name !== '') {
+                    this.randomNames.push(name)
+                }
+            }
+        }
 
         // Get sprite from system
         if (!isCustomTexture) 
