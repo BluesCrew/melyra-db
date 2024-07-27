@@ -25,16 +25,16 @@ function createInputBox(label, element_type, input_type) {
     return box;
 }
 
-// random names toggle
-const randomNameToggle = document.getElementById("randomNameToggle")
-const randomNameInput = document.getElementById("randomNameInput")
-randomNameInput.classList.toggle("hide");
-let randomNameToggled = false;
+// identified name toggle
+const identifiedNameToggle = document.getElementById("identifiedNameToggle")
+const identifiedNameInput = document.getElementById("identifiedNameInput")
+identifiedNameInput.classList.toggle("hide");
+let identifiedNameToggled = false;
 
-randomNameToggle.addEventListener("click", function(event) {
-    randomNameInput.classList.toggle("hide");
-    randomNameToggle.classList.toggle("button-toggled");
-    randomNameToggled = !randomNameToggled;
+identifiedNameToggle.addEventListener("click", function(event) {
+    identifiedNameInput.classList.toggle("hide");
+    identifiedNameToggle.classList.toggle("button-toggled");
+    identifiedNameToggled = !identifiedNameToggled;
     updateItem();
 })
 
@@ -462,7 +462,7 @@ function updateItem() {
                 description: description.value,
                 rarity: rarity.value,
                 minecraftId: minecraftId.value,
-                randomNames: randomNameToggled ? randomNameInput.children.item(1).value.split(";") : null
+                identifiedName: identifiedNameToggled ? identifiedNameInput.children.item(1).value : null
             }
         );
     }
@@ -515,7 +515,7 @@ function updateItem() {
                 description: description.value,
                 rarity: rarity.value,
                 minecraftId: minecraftId.value,
-                randomNames: randomNameToggled ? randomNameInput.children.item(1).value.split(";") : null
+                identifiedNames: identifiedNameToggled ? identifiedNameInput.children.item(1) : null
             },
             {
                 health: getStatInput("health"),
