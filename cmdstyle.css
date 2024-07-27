@@ -226,12 +226,13 @@ body {
 }
 
 
-.melyra-element img {
+.melyra-element canvas {
     width:100%;
     background-color: var(--primary-color-transparent);
     border-radius: 5px;
     image-rendering: pixelated;
     padding: 8px;
+    aspect-ratio: 1 / 1;
 }
 
 .melyra-element-tooltip {
@@ -268,8 +269,9 @@ body {
 
 
 .melyra-element:hover .melyra-element-tooltip {
-    max-height: 500px;
+    max-height: 100vh;
     width: max-content;
+    z-index: 10;
 }
 
 .melyra-element-tooltip-lore{

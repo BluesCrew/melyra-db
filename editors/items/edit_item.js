@@ -5,6 +5,10 @@ document.getElementById("optionRare").style.color = getColorCodeHex(getRarityObj
 document.getElementById("optionEpic").style.color = getColorCodeHex(getRarityObject("Epic").color);
 document.getElementById("optionLegendary").style.color = getColorCodeHex(getRarityObject("Legendary").color);
 
+// preview
+const prevCanvas = document.getElementById("previewCanvas");
+const prevTooltip = document.getElementById("previewTooltip");
+
 // input box creation
 function createInputBox(label, element_type, input_type) {
     let box = document.createElement("div");
@@ -39,8 +43,6 @@ identifiedNameToggle.addEventListener("click", function(event) {
 })
 
 // create stat inputs
-const statDataPart = document.getElementById("statItemData");
-
 function createStatInput(data) {
     let inputBox = createInputBox('<span style="color: '+getColorCodeHex(data.symbolColor)+'">'+data.symbol+' '+'</span>'+data.name+":", "input", "number")
     inputBox.children.item(0).classList.add("stat-label");
@@ -291,6 +293,9 @@ for (let item of allItems) {
     }
 }
 
+// components
+const leatherColorInput = document.getElementById("leatherColor");
+
 // Default Values
 const internalId = document.getElementById("internalId"); 
 const versionId = document.getElementById("versionId"); 
@@ -348,19 +353,19 @@ function updateColors(colorHex) {
 
     let inputBoxes = document.getElementsByClassName("inputbox");
     for(let box of inputBoxes) {
-        box.style.borderColor = hexToRgbA(colorHex, 0.25);
+        box.style.borderColor = hexToRgba(colorHex, 0.25);
     }
 
     document.getElementById("costsBox").style.borderColor = rarity.style.color;
 
     let costBoxes = document.getElementsByClassName("cost-box");
     for(let costBox of costBoxes) {
-        costBox.style.borderColor = hexToRgbA(colorHex, 0.25);
+        costBox.style.borderColor = hexToRgba(colorHex, 0.25);
     }
 
     let levelBoxes = document.getElementsByClassName("level-box");
     for(let levelBox of levelBoxes) {
-        levelBox.style.borderColor = hexToRgbA(colorHex, 0.5);
+        levelBox.style.borderColor = hexToRgba(colorHex, 0.5);
     }
 }
 
@@ -372,15 +377,10 @@ type.value = "Material";
 upgradable.checked = false;
 
 
-
-// Store edited item
-let EDITED_ITEM;
-updateItem();
-
-// Detect any changes
+//Detect any changes
 let allInputs = document.getElementsByClassName("data-input");
 for (let input of allInputs) {
-    input.addEventListener("change", function(event) {
+    input.addEventListener("input", function(event) {
         updateItem();
     })
 }
@@ -391,6 +391,10 @@ for (let button of allButtons) {
         updateItem();
     })
 }
+
+// Store edited item
+let EDITED_ITEM;
+updateItem(false);
 
 function importItem(item) {
     internalId.value = item.internalId;
@@ -409,6 +413,15 @@ function importItem(item) {
         description.value = item.description;
     }
 
+    if (item.additional_components){
+        for (let component of item.additional_components) {
+            if (component['component'] == 'minecraft:dyed_color') {
+                leatherColorInput.classList.remove("hide");
+                leatherColorInput.children.item(1).value = decimalToHex(component['value']['rgb']).toUpperCase();
+                break;
+            }
+        }
+    }
 
     if (item.type != "Material") {
         upgradable.checked = item.upgradable;
@@ -443,33 +456,37 @@ function importItem(item) {
     updateItem();
 
     updateColors(getColorCodeHex(getRarityObject(item.rarity).color));
-
-    setTimeout(function() {updatePreview(EDITED_ITEM)}, 10);
 }
 
-function updateItem() {
+function updateItem(refreshPreview = true) {
+    let additional_components = [];
+    if (!leatherColorInput.classList.contains("hide")) {
+        additional_components.push({'component': 'minecraft:dyed_color', 'value': {'rgb': hexToDecimal(leatherColorInput.children.item(1).value), 'show_in_tooltip':false}})
+    }
+
+    element_data = {
+        name: itemName.value,
+        internalId: internalId.value,
+        versionNumber: versionId.value
+    }
+
+    base_data = {   
+        description: description.value,
+        rarity: rarity.value,
+        minecraftId: minecraftId.value,
+        identifiedName: identifiedNameToggled ? identifiedNameInput.children.item(1).value : null,
+        additional_components: additional_components
+    }
+
     if (type.value === "Material")
     {
-        statDataPart.style.display = "none";
-
         EDITED_ITEM = new BaseItem(
-            {
-                name: itemName.value,
-                internalId: internalId.value,
-                versionNumber: versionId.value
-            },
-            {
-                description: description.value,
-                rarity: rarity.value,
-                minecraftId: minecraftId.value,
-                identifiedName: identifiedNameToggled ? identifiedNameInput.children.item(1).value : null
-            }
+            element_data,
+            base_data
         );
     }
     else 
     {
-        statDataPart.style.display = "";
-
         let abilities = [];
         for (let abilityBlock of abilityBlocks) 
         {
@@ -506,17 +523,8 @@ function updateItem() {
         }
 
         EDITED_ITEM = new StatItem(
-            {
-                name: itemName.value,
-                internalId: internalId.value,
-                versionNumber: versionId.value
-            },
-            {
-                description: description.value,
-                rarity: rarity.value,
-                minecraftId: minecraftId.value,
-                identifiedNames: identifiedNameToggled ? identifiedNameInput.children.item(1) : null
-            },
+            element_data,
+            base_data,
             {
                 health: getStatInput("health"),
                 defense: getStatInput("defense"),
@@ -549,8 +557,11 @@ function updateItem() {
     // update ability activation selects
     updateActivationSelects();
 
-    // finally, update preview
-    updatePreview(EDITED_ITEM);
+    // run conditional fields check
+    run_matches();
+    
+    // update preview
+    if (refreshPreview) updatePreview(EDITED_ITEM, prevTooltip, prevCanvas);
 }
 
 function updateActivationSelects() {

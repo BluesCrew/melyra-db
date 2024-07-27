@@ -1,39 +1,32 @@
 var WhenLoaded = [];
-
 a = new StatItem(
     {
-        name: "Super Beef",
-        internalId: "super_beef",
+        name: "Ultimate Helmet",
+        internalId: "ultimate_helmet",
     }, 
     {
         isCustomTexture: false,
-        rarity: "Uncommon",
-        minecraftId: "cooked_beef",
-        description: "Be careful when throwing it at a vegan."
+        rarity: "Legendary",
+        minecraftId: "leather_helmet",
+        description: "Most powerful helmet to exist.",
+        additional_components: [{'component': 'minecraft:dyed_color', 'value': {'rgb': 8999544, 'show_in_tooltip':false}}]
     },
     {
-        strength: 5,
-        critical: 15,
-        health: 4,
-        defense: 1,
-        manaRegeneration: 1,
-        healthRegeneration: 4,
-        arcane: 4,
-        speed: 4,
-        woodcuttingSpeed: 8,
-        miningSpeed: 7
+        strength: 110,
+        critical: 65,
+        health: 250,
+        defense: 125
     },
     {
-        type: "Ranged",
+        type: "Helmet",
         abilities: [new ItemAbility(
             {
-                name: "Throwing",
-                internalId: "beef",
+                name: "Intellect",
+                internalId: "ultimate_helmet_iq",
             },
             {
-                activationType: "Right-click",
-                abilityDescription: "Throws the beef for\\nmassive damage.",
-                manaCost: 20
+                activationType: "Passive",
+                abilityDescription: "Multiples your IQ."
             }
         )]
     }
@@ -41,62 +34,105 @@ a = new StatItem(
 
 b = new StatItem(
     {
-        name: "Hyper Boat",
-        internalId: "hyper_boat",
+        name: "Ultimate Chestplate",
+        internalId: "ultimate_chestplate",
     }, 
     {
         isCustomTexture: false,
-        rarity: "Epic",
-        minecraftId: "birch_boat",
-        description: "Most powerful boat to exist.\\n \\nIt was made to be able to travel to the most\\ndangerous islands."
+        rarity: "Legendary",
+        minecraftId: "leather_chestplate",
+        description: "Most powerful chestplate to exist.",
+        additional_components: [{'component': 'minecraft:dyed_color', 'value': {'rgb': 8999544, 'show_in_tooltip':false}}]
     },
     {
-        strength: 25,
-        critical: 18
+        strength: 200,
+        critical: 100,
+        health: 400,
+        defense: 200
     },
     {
-        type: "Melee",
+        type: "Chestplate",
         abilities: [new ItemAbility(
             {
-                name: "Navigation",
-                internalId: "boat_ability",
+                name: "Untouchable",
+                internalId: "ultimate_chestplate_protection",
             },
             {
-                activationType: "Sneak Double",
-                abilityDescription: "Use near an ocean to navigate\\nto a magical island.",
-                manaCost: 0
+                activationType: "Passive",
+                abilityDescription: "Multiplies your defense."
             }
         )]
     }
 );
 
-c = new BaseItem(
+c = new StatItem(
     {
-        name: "Ender Fragment",
-        internalId: "ender_fragment",
+        name: "Ultimate Leggings",
+        internalId: "ultimate_leggings",
     }, 
     {
         isCustomTexture: false,
         rarity: "Legendary",
-        minecraftId: "silence_armor_trim_smithing_template",
-        type: "Material",
-        description: "Can be used to upgrade items up to +8."
+        minecraftId: "leather_leggings",
+        description: "Most powerful leggings to exist.",
+        additional_components: [{'component': 'minecraft:dyed_color', 'value': {'rgb': 8999544, 'show_in_tooltip':false}}]
+    },
+    {
+        strength: 175,
+        critical: 120,
+        health: 325,
+        defense: 185
+    },
+    {
+        type: "Leggings",
+        abilities: [new ItemAbility(
+            {
+                name: "Flying",
+                internalId: "ultimate_leggings_jump",
+            },
+            {
+                activationType: "Sneak Double",
+                abilityDescription: "Sends you high in the air."
+            }
+        )]
     }
 );
 
-d = new BaseItem(
+
+d = new StatItem(
     {
-        name: "Upgrade Gem",
-        internalId: "upgrade_gem",
+        name: "Ultimate Boots",
+        internalId: "ultimate_boots",
     }, 
     {
         isCustomTexture: false,
-        rarity: "Epic",
-        minecraftId: "diamond",
-        type: "Material",
-        description: "Can be used to upgrade items up to +5."
+        rarity: "Legendary",
+        minecraftId: "leather_boots",
+        description: "Most powerful boots to exist.",
+        additional_components: [{'component': 'minecraft:dyed_color', 'value': {'rgb': 8999544, 'show_in_tooltip':false}}]
+    },
+    {
+        strength: 100,
+        critical: 50,
+        health: 200,
+        defense: 115
+    },
+    {
+        type: "Boots",
+        abilities: [new ItemAbility(
+            {
+                name: "Slam",
+                internalId: "ultimate_boots_slam",
+            },
+            {
+                activationType: "Sneak Double",
+                abilityDescription: "Creates a massive explosion.",
+                manaCost: 20
+            }
+        )]
     }
 );
+
 
 allItems = [];
 allItems.push(a, b, c, d);

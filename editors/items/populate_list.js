@@ -15,15 +15,11 @@ function populate_list(item) {
     tooltipLore.classList.add("melyra-element-tooltip-lore");
     newName.appendChild(tooltipLore);
 
-    Lore = item.get_lore();
-    tooltipLore.setAttribute("Lore", JSON.stringify(Lore));
-    loadLoreElements(tooltipLore, Lore);
-
-    let img = document.createElement("img");
-    img.src = item.sprite;
+    let canvas = document.createElement("canvas");
+    updatePreview(item, tooltipLore, canvas)
     
     newElem.appendChild(newName);
-    newElem.appendChild(img);
+    newElem.appendChild(canvas);
 
     parent.appendChild(newElem);
 }
