@@ -380,9 +380,22 @@ upgradable.checked = false;
 //Detect any changes
 let allInputs = document.getElementsByClassName("data-input");
 for (let input of allInputs) {
-    input.addEventListener("input", function(event) {
+    input.addEventListener("change", function(event) {
         updateItem();
     })
+
+    if (input.id == "leatherColorInput") {
+        input.addEventListener("input", function(event) {
+            for (let component of EDITED_ITEM.additional_components) {
+                if (component['component'] == 'minecraft:dyed_color') {
+                    component['value']['rgb'] = hexToDecimal(event.target.value);
+                    break;
+                }
+            }
+            console.log("change");
+            updatePreview(EDITED_ITEM, prevTooltip, prevCanvas);
+        })
+    }
 }
 
 let allButtons = document.querySelectorAll("button");
