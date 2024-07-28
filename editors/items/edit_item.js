@@ -407,7 +407,7 @@ for (let button of allButtons) {
 
 // Store edited item
 let EDITED_ITEM;
-updateItem(false);
+updateItem(URL_DATA_ITEM === "$"); // is new item
 
 function importItem(item) {
     internalId.value = item.internalId;
