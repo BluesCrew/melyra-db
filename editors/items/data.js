@@ -122,3 +122,9 @@ const colors = [
     'yellow',
     'white'
 ];
+
+const itemComponents = [
+    {"component": "minecraft:custom_data", "type": "string_obj", "input_placeholder": "{Foo:'Bar', Food:{Today:'Apples', Tomorrow:'Bananas'}}"},
+    {"component": "minecraft:enchantment_glint_override", "type": "bool"},
+    {"component": "minecraft:enchantments", "type": "string_obj", "input_placeholder": "{'levels':{'minecraft:unbreaking': 3, 'minecraft:fortune': 3}}"}
+]

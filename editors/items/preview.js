@@ -30,7 +30,6 @@ function setIcon(item, canvas) {
     let not_loaded = item.minecraftId !== loaded_sprite;
 
     if (not_loaded) {
-        console.log("update buffer");
         Object.assign(
             new Image(), {
                 src: item.sprite,
@@ -50,7 +49,6 @@ function setIcon(item, canvas) {
         loaded_sprite = item.minecraftId;
     } 
     else {
-        console.log("draw buffer");
         ctx.drawImage(image_buffer, 0, 0, canvas.width, canvas.height)
 
         if (item.minecraftId.includes("leather_")) {

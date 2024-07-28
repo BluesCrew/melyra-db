@@ -82,3 +82,11 @@ function decimalToHex(dec) {
     rgb = decimalToRgb(dec);
     return rgbToHex(rgb);
 }
+
+function toTitleCase(string) {
+    words = string.split(' ');
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+    return words.join(" ");
+}

@@ -287,13 +287,26 @@ for (let lvl = 1; lvl <= 9; lvl++) {
     generateCostBox(lvl);
 }
 
-for (let item of allItems) {
+for (const item of allItems) {
     if (item.type === "Material") {
         appendToMaterialImporter(item);
     }
 }
 
+
 // components
+const additionalComponentsParent = document.getElementById("additionalComponents");
+for (const component of itemComponents) {
+    let component_id = component["component"];
+    let component_name = toTitleCase(component_id.replace("minecraft:", "").replace(/_/g, " "));
+    let type = component["type"]
+    let input = createInputBox(component_name, "input", type === "bool" ? "checkbox" : type === "string" ? "text" : "error");
+    input.id = component_id;
+    input.children.item(1).placeholder = component.input_placeholder;
+    additionalComponentsParent.appendChild(input);
+}
+
+
 const leatherColorInput = document.getElementById("leatherColor");
 
 // Default Values
@@ -392,7 +405,6 @@ for (let input of allInputs) {
                     break;
                 }
             }
-            console.log("change");
             updatePreview(EDITED_ITEM, prevTooltip, prevCanvas);
         })
     }
@@ -431,8 +443,10 @@ function importItem(item) {
             if (component['component'] == 'minecraft:dyed_color') {
                 leatherColorInput.classList.remove("hide");
                 leatherColorInput.children.item(1).value = decimalToHex(component['value']['rgb']).toUpperCase();
-                break;
+                continue;
             }
+
+
         }
     }
 
@@ -475,6 +489,23 @@ function updateItem(refreshPreview = true) {
     let additional_components = [];
     if (!leatherColorInput.classList.contains("hide")) {
         additional_components.push({'component': 'minecraft:dyed_color', 'value': {'rgb': hexToDecimal(leatherColorInput.children.item(1).value), 'show_in_tooltip':false}})
+    }
+    for (const componentData of itemComponents) {
+        const componentInput = document.getElementById(componentData.component).children.item(1);
+        console.log(`${componentData.component}: ${componentInput.value}`)
+        if (componentInput && componentInput.value !== "" && componentInput.value !== undefined && componentInput.value !== null) {
+            switch(componentData.type) {
+                case "bool":
+                    additional_components.push({'component': componentData.component, 'value': componentInput.value === "on"});
+                    break;
+                case "string_obj":
+                    if (!(componentInput.value[0] === "{" && componentInput.value[componentInput.value.length - 1] === "}"))
+                        break;
+                    additional_components.push({'component': componentData.component, 'value': componentInput.value});
+                    break;                 
+            }
+        }
+        console.log(additional_components);
     }
 
     element_data = {
