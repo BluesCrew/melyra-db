@@ -365,10 +365,8 @@ rarity.onchange = (event) => {
     var rarityObj = getRarityObject(event.target.value);
 
     const newMaxEnchantSlots = rarityObj.enchantSlots;
-    enchantSlotCountInput.placeholder = `0-${newMaxEnchantSlots}`
-    if (enchantSlotCountInput.value === "") {
-        enchantSlotCountInput.value = newMaxEnchantSlots;
-    }
+    enchantSlotCountInput.placeholder = `0-${newMaxEnchantSlots}`;
+    enchantSlotCountInput.value = newMaxEnchantSlots;
 
     updateColors(getColorCodeHex(rarityObj.color));
 };
