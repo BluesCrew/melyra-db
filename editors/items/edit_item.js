@@ -296,16 +296,98 @@ for (const item of allItems) {
 
 // components
 const additionalComponentsParent = document.getElementById("additionalComponents");
-for (const component of itemComponents) {
+function appendComponents(component, parent){
     let component_id = component["component"];
     let component_name = toTitleCase(component_id.replace("minecraft:", "").replace(/_/g, " "));
     let type = component["type"]
     let input = createInputBox(component_name, "input", type === "bool" ? "checkbox" : type === "string" ? "text" : "error");
     input.id = component_id;
     input.children.item(1).placeholder = component.input_placeholder;
-    additionalComponentsParent.appendChild(input);
+    parent.appendChild(input);
 }
 
+for (const component of itemComponents) {
+    appendComponents(component, additionalComponentsParent)
+}
+
+// Enchantments
+{
+    const enchantmentsParent = document.createElement('div');
+
+    enchantmentsParent.classList.add("enchantment-data");
+
+    let label = document.createElement("div");
+    label.style.textDecoration = "underline";
+    label.textContent = "Enchantments";
+    enchantmentsParent.appendChild(label);
+
+    let components = [
+        {"component": "minecraft:show_all", "type": "bool"},
+        {"component": "minecraft:show_in_tooltip", "type": "bool"},
+        {"component": "minecraft:enchantment_glint_override", "type": "bool"},
+    ]
+    for (const component of components) {
+        appendComponents(component, enchantmentsParent)
+    }
+
+    //list
+    let list = document.createElement("ul");
+    list.classList.add("enchantment-list");
+    enchantmentsParent.appendChild(list);
+
+    //primary
+    //  ...
+    let primary = document.createElement("div");
+    primary.style.textDecoration = "underline";
+    primary.style.order = 1;
+    primary.textContent = "primary";
+    list.appendChild(primary);
+
+    // other
+    // ...
+    let other = document.createElement("div");
+    other.style.textDecoration = "underline";
+    other.style.order = 3;
+    other.textContent = "other";
+    list.appendChild(other);
+
+    // all
+    // ...
+    let all = document.createElement("div");
+    all.style.textDecoration = "underline";
+    all.style.order = 5;
+    all.textContent = "all";
+    list.appendChild(all);
+
+    for (Enchantment in Enchantments){
+        parentBox = document.createElement("div");
+        parentBox.classList.add("level-box");
+        console.log(Enchantment);
+        label = document.createElement("p");
+        label.classList.add("label");
+        label.style.width = "150px";
+        label.style.fontSize = "15px";
+        label.innerText = toTitleCase(Enchantment.replaceAll("_", " "))
+
+        value = createInputBox("LVL", "input", "number");
+        value.style.fontSize = "14px";
+        value.children.item(1).id = "enchantment_" + Enchantment
+
+        label2 = document.createElement("p");
+        label2.classList.add("label");
+        label2.style.width = "80px";
+        label2.style.fontSize = "15px";
+        label2.innerText = "Max: " + Enchantments[Enchantment].max
+
+
+        parentBox.append(label, value, label2);
+        list.appendChild(parentBox);
+    }
+
+    additionalComponentsParent.appendChild(enchantmentsParent);
+
+    document.getElementById("minecraft:show_all").classList.add("showAllToggle");
+}
 
 const leatherColorInput = document.getElementById("leatherColor");
 
@@ -623,6 +705,9 @@ function updateItem(refreshPreview = true) {
     // update ability activation selects
     updateActivationSelects();
 
+    // update visible enchantments
+    updateVisibleEnchantments();
+
     // run conditional fields check
     run_matches();
     
@@ -634,4 +719,29 @@ function updateActivationSelects() {
     const abilitySelects = document.getElementsByClassName("ability-activation-select");
 
 
+}
+
+function updateVisibleEnchantments() {
+    for (let enchantment in Enchantments)
+    {
+        
+        let element = document.getElementById("enchantment_" + enchantment);
+        let data = Enchantments[enchantment];
+        placement = 6
+        
+
+        if (data.primary_items){
+            
+            if (itemTags[data.primary_items.replace("#minecraft:",'')].includes(minecraftId.value.replace("minecraft:",''))){
+                placement = 2;
+            }
+        }else if (data.supported_items){
+            
+            if (itemTags[data.supported_items.replace("#minecraft:",'')].includes(minecraftId.value.replace("minecraft:",''))){
+                placement = 4;
+            }
+        }
+        element.parentElement.parentElement.style.order = placement;
+        element.parentElement.parentElement.dataset.order = placement;
+    }
 }

@@ -194,6 +194,32 @@
     border-color: aquamarine;
 }
 
+.enchantment-data {
+    min-height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    gap: 1em;
+    padding: 5px;
+    border: solid 1px;
+    border-radius: 3px;
+    border-color: aquamarine;
+}
+
+.enchantment-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.enchantment-list div[data-order="6"]{
+    display: none;
+}
+
+.showAllToggle:has(input:checked) ~ .enchantment-list div[data-order="6"] {
+    display: flex;
+}
+
 #abilitiesData {
     min-height: max-content;
     display: flex;
