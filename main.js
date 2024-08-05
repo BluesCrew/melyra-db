@@ -90,13 +90,18 @@ class StatItem extends BaseItem {
     upgradable = true;
     abilities = [];
     upgrade_cost = [];
+    enchant_slots = 0;
 
-    constructor(baseArgs, baseArgs2, statArgs, {type = "Melee", upgradable = true, abilities = null}) {
+    constructor(baseArgs, baseArgs2, statArgs, {type = "Melee", upgradable = true, abilities = null, enchant_slots = -1}) {
         super(baseArgs, baseArgs2);
 
         super.type = type;
         this.upgradable = upgradable;
         this.abilities = abilities;
+        this.enchant_slots = enchant_slots;
+        if (enchant_slots === -1) {
+            this.enchant_slots = getRarityObject(this.rarity).enchantSlots;
+        }
 
         Object.assign(this.stats, statArgs);
     }
@@ -182,11 +187,15 @@ class StatItem extends BaseItem {
         }
 
 
+        if (this.enchant_slots <= 0) {
+            return lines;
+        } 
+
         // enchants
         lines.push([{text:"||",color:rarityObject.color,obfuscated:true},{text:" Enchantments",color:rarityObject.color}])
 
         let enchantSlotsLine = [{text:"||",color:rarityObject.color,obfuscated:true}]
-        let slotCount = rarityObject.enchantSlots;
+        let slotCount = this.enchant_slots;
 
         for (let i = 0; i < slotCount; i++) {
             enchantSlotsLine.push({text:' [',color:"gray"});

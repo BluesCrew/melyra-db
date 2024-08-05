@@ -348,8 +348,29 @@ function getStatInput(statId) {
     }
 }
 
+const enchantSlotCountInput = document.getElementById("enchantSlotCount");
+enchantSlotCountInput.oninput = (event) => {
+    const maxSlots = getRarityObject(EDITED_ITEM.rarity).enchantSlots;
+
+    if (event.target.value < 0) {
+        event.target.value = 0;
+    }
+    else if (event.target.value > maxSlots) {
+        event.target.value = maxSlots;
+    }
+};
+
 rarity.onchange = (event) => {
-    updateColors(getColorCodeHex(getRarityObject(event.target.value).color));
+
+    var rarityObj = getRarityObject(event.target.value);
+
+    const newMaxEnchantSlots = rarityObj.enchantSlots;
+    enchantSlotCountInput.placeholder = `0-${newMaxEnchantSlots}`
+    if (enchantSlotCountInput.value === "") {
+        enchantSlotCountInput.value = newMaxEnchantSlots;
+    }
+
+    updateColors(getColorCodeHex(rarityObj.color));
 };
 
 function updateColors(colorHex) {
@@ -382,13 +403,15 @@ function updateColors(colorHex) {
     }
 }
 
+
+
+
 internalId.value = "new_item";
 versionId.value = 1;
 minecraftId.value = "minecraft:coal";
 itemName.value = "New Item";
 type.value = "Material";
 upgradable.checked = false;
-
 
 //Detect any changes
 let allInputs = document.getElementsByClassName("data-input");
@@ -480,6 +503,8 @@ function importItem(item) {
         }
     }
 
+    enchantSlotCountInput.value = item.enchant_slots;
+
     updateItem();
 
     updateColors(getColorCodeHex(getRarityObject(item.rarity).color));
@@ -492,7 +517,6 @@ function updateItem(refreshPreview = true) {
     }
     for (const componentData of itemComponents) {
         const componentInput = document.getElementById(componentData.component).children.item(1);
-        console.log(`${componentData.component}: ${componentInput.value}`)
         if (componentInput && componentInput.value !== "" && componentInput.value !== undefined && componentInput.value !== null) {
             switch(componentData.type) {
                 case "bool":
@@ -505,7 +529,6 @@ function updateItem(refreshPreview = true) {
                     break;                 
             }
         }
-        console.log(additional_components);
     }
 
     element_data = {
@@ -593,7 +616,8 @@ function updateItem(refreshPreview = true) {
                 type: type.value,
                 upgradable: upgradable.checked,
                 abilities: abilities,
-                upgrade_costs: upgrades
+                upgrade_costs: upgrades,
+                enchant_slots: (enchantSlotCountInput.value !==  "") ? parseInt(enchantSlotCountInput.value) : 0
             }
         );
     }
