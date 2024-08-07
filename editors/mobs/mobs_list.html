@@ -7,6 +7,14 @@
     <link rel="shortcut icon" href="/melyra-db/assets/logo.png" type="image/png">
     <link rel="stylesheet" href="/melyra-db/cmdstyle.css">
     <script src="/melyra-db/main.js"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.1/examples/jsm/"
+          }
+        }
+      </script>
 </head>
 <body>
     <header>    
@@ -33,26 +41,14 @@
     </header>
     <div class="main">
         <h1>Melyra Database Editor</h1>
-        <h2>Manage & Edit assets from the <span style="font-weight: 900;">Melyra Project</span>!</h2>
-        <span style="margin:1.5em;"></span>
-        <ul>
-            <li>
-                View: see the list of assets, or open a specific one!
-            </li>
-            <li>
-                Actions: do actions on the database, mainly pushing it to update.
-            </li>
-        </ul>
-        <p>
-            This tool's use is to make the existence of Melyra's objects (items, creatures, recipe) less abstract for developers.
-            <br>
-            With this, we will be able to manage each object's data directly here. Pushing to update will export the data in the datapack.
-            <br>
-            Keep in mind specific behavior will have to be manually added (e.g abilities, creatures with special AI, etc.)
-        </p>
+        <h2>Mobs List</h2>
+        <button class="add-element" id="newMobButton">Add Mob</button>
+        <div class="element-list" id="list-parent">
+        </div>
     </div>
-    <div class="bottombox">
-        <p>© CMDred</p>
-    </div>
+
+    <script src="get_mobs.js"></script>
+    <script src="populate_list.js" type="module"></script>
+    <script src="load_done.js" type="module"></script>
 </body>
 </html>

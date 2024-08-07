@@ -224,3 +224,38 @@ class ItemAbility extends MelyraElement {
         this.manaCost = manaCost;
     }
 }
+
+class Mob extends MelyraElement {
+    nameColor;
+    minecraftId;
+    level;
+    stats = {
+        health: undefined,
+        damage: undefined,
+        defense: undefined,
+        magicDamage: undefined,
+        magicDefense: undefined,
+        speed: undefined,
+        knockbackResistance: undefined
+    };
+    deathLootTable;
+    abilities;
+    isCustomAggressive;
+    tags;
+    otherNBT;
+
+    constructor(baseArgs, statArgs, {nameColor="red", minecraftId="zombie", level=1, deathLootTable=undefined, abilities=null, isCustomAggressive=false, tags=null, otherNBT=null}) {
+        super(baseArgs);
+
+        Object.assign(this.stats, statArgs);
+
+        this.nameColor = nameColor;
+        this.minecraftId = minecraftId;
+        this.level = level;
+        this.deathLootTable = deathLootTable;
+        this.abilities = abilities;
+        this.isCustomAggressive = isCustomAggressive;
+        this.tags = tags;
+        this.otherNBT = otherNBT;
+    }
+}

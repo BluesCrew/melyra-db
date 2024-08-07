@@ -301,7 +301,7 @@ body {
     flex-direction: row;
 }
 
-.add-item {
+.add-element {
     background: var(--accent3-color);
     font-family: 'Montserrat', sans-serif;
     height: calc(var(--footer-height) - 5px);
