@@ -21,8 +21,14 @@ export function renderBaseMob(mob, canvas, itemListPreview=false) {
             scene.add(gltf.scene);
             console.log(scene);
 
-            camera.position.set(-1, 2, -1);
-            camera.lookAt(0, 1, 0);
+            camera.position.set(-1, 1, -1);
+            camera.lookAt(0, 0, 0);
+
+
+            const screenBox = new THREE.Box3().setFromObject(gltf.scene).applyMatrix4(camera.matrix);
+            gltf.scene.position.sub(screenBox.getCenter(new THREE.Vector3()));
+            camera.zoom = 2 / Math.max(...screenBox.getSize(new THREE.Vector3()).toArray())
+            camera.updateProjectionMatrix();
 
             const renderer = new THREE.WebGLRenderer({canvas});
             renderer.setSize(canvas.width, canvas.height);
