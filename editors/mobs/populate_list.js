@@ -1,3 +1,5 @@
+import {previewMob} from "./preview.js";
+
 function populate_list(mob) {
     let parent = document.getElementById("list-parent");
 
@@ -13,7 +15,9 @@ function populate_list(mob) {
     newName.innerHTML = mob.name;
 
     let canvas = document.createElement("canvas");
-    // updatePreview(mob, tooltipLore, canvas)
+    canvas.width = 200;
+    canvas.height = 200;
+    previewMob(mob, canvas, true);
     
     newElem.appendChild(newName);
     newElem.appendChild(canvas);
