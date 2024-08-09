@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melyra DB</title>
+    <link rel="shortcut icon" href="/melyra-db/assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="/melyra-db/cmdstyle.css">
+    <link rel="stylesheet" href="./../creation_page_style.css">
+    <script src="/melyra-db/main.js"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.1/examples/jsm/"
+          }
+        }
+      </script>
+</head>
+<body>
+    <header>    
+        <div class="navbox">
+            <ul class="navbox-list">
+                <li>
+                    <a class="navbox-option">View</a>
+                    <div class="cmddropdown-content">
+                        <a href="/melyra-db/editors/items/items_list.html">View Items</a>
+                        <a href="/melyra-db/editors/mobs/mobs_list.html">View Mobs</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="navbox-option">Actions</a>
+                    <div class="cmddropdown-content">
+                        <a href="#">Push to repository</a>
+                    </div>
+                </li>
+                <li class="last">
+                    <a href="/melyra-db/index.html"class="navbox-option">Home</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="main">
+        <h2>Melyra Database Editor</h2>
+        <h3>Mob Editor</h3>
+        <div class="container">
+            <div class="previewing-area">
+                <canvas id="mobPreviewCanvas">
+                    
+                </canvas>
+            </div>
+            <div class="editing-area mob-edit-area">
+                <div class="group-label">Internal</div>
+                <div class="inputbox">
+                    <div>Internal ID: </div>
+                    <input type="text" class="data-input" placeholder="zombie_grunt" id="internalId">
+                </div>
+                <div class="inputbox">
+                    <div>Version ID: </div>
+                    <input type="number" class="data-input" placeholder="1" id="versionId">
+                </div>
+                <div class="inputbox">
+                    <div>Minecraft ID: </div>
+                    <input type="text" class="data-input" placeholder="minecraft:zombie" id="minecraftId">
+                </div>
+                <div class="group-label">Common Data</div>
+                <div class="inputbox">
+                    <div>Name: </div>
+                    <input type="text" class="data-input" placeholder="Zombie Grunt" id="mobName">
+                </div>
+                <div class="inputbox">
+                    <div>Name Color: </div>
+                    <input type="text" class="data-input" placeholder="'red' or '#AABBCC'" id="mobNameColor">
+                </div>
+                <div class="inputbox">
+                    <div>Mob Level: </div>
+                    <input type="number" class="data-input" placeholder="5" id="mobLevel">
+                </div>
+                <div class="inputbox">
+                    <div>Death Loot Table: </div>
+                    <input type="text" class="data-input" placeholder="common/zombie_grunt" id="mobDeathLootTable">
+                </div>
+                <div class="inputbox">
+                    <div>Is Custom Aggressive: </div>
+                    <input type="checkbox" class="data-input" id="isCustomAggressive">
+                </div>
+
+                <div class="group-label">Stats</div>
+                <div id="statData">
+
+                </div>
+
+                <div class="group-label">Abilities</div>
+                <div id="abilitiesData">
+                    <div>Info: Putting the same ID as another ability will copy its behavior. <br>You can safely override the other data.</div>
+                    <button class="ability-count-change changing-button" id="addAbility">
+                        +
+                    </button>
+                </div>
+
+                 <div class="group-label">Other</div>
+                 <div class="inputbox">
+                    <div>Other NBT: </div>
+                    <input type="text" class="data-input" placeholder="{Passengers:[{id:'minecraft:pig'}],foo:'bar'}" id="otherNBT">
+                </div>
+                <div class="inputbox">
+                    <div>Tags: </div>
+                    <input type="text" class="data-input" placeholder="IsArachnid;IsUndead;XXXX" id="tags">
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./../data.js"></script>
+    <script src="./../util.js"></script>
+    <script src="./../get_url_params.js"></script>
+    <script src="get_mobs.js"></script>
+    <script src="preview.js" type="module"></script>
+    <!-- <script src="conditional_fields.js"></script> -->
+    <script src="edit_mob.js" type="module"></script>
+    <script src="import_mob.js" type="module"></script>
+    <script src="load_done.js" type="module"></script>
+</body>
+</html>

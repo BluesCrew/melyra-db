@@ -16,18 +16,33 @@ let a = new Mob(
 
 let b = new Mob(
     {
-        name: "Warden",
-        internalId: "warden",
+        name: "Bat",
+        internalId: "bat",
     }, 
     {
         health: 200,
         defense: 80
     }, 
     {
-        minecraftId: "warden",
+        minecraftId: "bat",
+        level: 30,
+    }
+);
+
+let c = new Mob(
+    {
+        name: "Cat",
+        internalId: "cat",
+    }, 
+    {
+        health: 200,
+        defense: 80
+    }, 
+    {
+        minecraftId: "cat",
         level: 30,
     }
 );
 
 const allMobs = [];
-allMobs.push(a, b);
+allMobs.push(a, b, c);

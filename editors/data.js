@@ -48,6 +48,16 @@ const statData = [
     // { id: "fishingSpeed", group: 3, symbol: "🎣", numberOfSpaces: 1, symbolColor: "gold", name: "Fishing Speed", nbt: "FishingSpeed", isPercentage: false },
 ];
 
+const mobStatData = []
+for (let stat of statData) {
+    if (["health", "damage", "defense", "magicDamage", "magicDefense", "speed"].includes(stat.id)) {
+        mobStatData.push(stat);
+    }
+}
+mobStatData.push(
+    { id: "knockbackResistance", group: 1, symbol: "🛡", numberOfSpaces: 1, symbolColor: "white", name: "Knockback Resistance", nbt: "KnockbackResistance", isPercentage: true },
+)
+
 const attributeUuids = {
     MAINHAND: { id: "[I;12,42069,0,10]", slot: "mainhand" },
     OFFHAND: { id: "[I;12,42069,0,11]", slot: "offhand" },

@@ -243,8 +243,9 @@ class Mob extends MelyraElement {
     isCustomAggressive;
     tags;
     otherNBT;
+    textureVariant;
 
-    constructor(baseArgs, statArgs, {nameColor="red", minecraftId="zombie", level=1, deathLootTable=undefined, abilities=null, isCustomAggressive=false, tags=null, otherNBT=null}) {
+    constructor(baseArgs, statArgs, {nameColor="red", minecraftId="zombie", level=1, deathLootTable=null, abilities=null, isCustomAggressive=false, tags=null, otherNBT=null, textureVariant=null}) {
         super(baseArgs);
 
         Object.assign(this.stats, statArgs);
@@ -257,5 +258,6 @@ class Mob extends MelyraElement {
         this.isCustomAggressive = isCustomAggressive;
         this.tags = tags;
         this.otherNBT = otherNBT;
+        this.textureVariant = textureVariant;
     }
 }

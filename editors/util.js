@@ -90,3 +90,52 @@ function toTitleCase(string) {
     }
     return words.join(" ");
 }
+
+
+
+function createInputBox(label, element_type, input_type) {
+    let box = document.createElement("div");
+    box.classList.add("inputbox");
+
+    let lab = document.createElement("div");
+    lab.innerHTML = label;
+
+    let elem = document.createElement(element_type);
+    if (element_type == "input") {
+        elem.type = input_type;
+    }
+    elem.classList.add("data-input");
+
+    box.appendChild(lab);
+    box.appendChild(elem);
+
+    return box;
+}
+
+
+
+function createStatInput(data, parent) {
+    let inputBox = createInputBox('<span style="color: '+getColorCodeHex(data.symbolColor)+'">'+data.symbol+' '+'</span>'+data.name+":", "input", "number")
+    inputBox.children.item(0).classList.add("stat-label");
+
+    let firstInput = inputBox.children.item(1);
+    firstInput.id = data.id;
+    firstInput.classList.add("stat-input", "range-first-input");
+    firstInput.type = "number";
+
+    let secondInput = document.createElement("input");
+    secondInput.id = data.id;
+    secondInput.classList.add("data-input", "stat-input", "range-second-input", "hidden");
+    firstInput.type = "number";
+    inputBox.appendChild(secondInput);
+
+    let button = document.createElement("button");
+    button.id = data.id;
+    button.classList.add("toggle-range-button");
+    button.textContent = "Toggle Range";
+    inputBox.appendChild(button);
+
+    parent.appendChild(inputBox);
+
+    return inputBox;
+}

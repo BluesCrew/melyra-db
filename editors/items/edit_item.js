@@ -9,25 +9,6 @@ document.getElementById("optionLegendary").style.color = getColorCodeHex(getRari
 const prevCanvas = document.getElementById("previewCanvas");
 const prevTooltip = document.getElementById("previewTooltip");
 
-// input box creation
-function createInputBox(label, element_type, input_type) {
-    let box = document.createElement("div");
-    box.classList.add("inputbox");
-
-    let lab = document.createElement("div");
-    lab.innerHTML = label;
-
-    let elem = document.createElement(element_type);
-    if (element_type == "input") {
-        elem.type = input_type;
-    }
-    elem.classList.add("data-input");
-
-    box.appendChild(lab);
-    box.appendChild(elem);
-
-    return box;
-}
 
 // identified name toggle
 const identifiedNameToggle = document.getElementById("identifiedNameToggle")
@@ -42,33 +23,8 @@ identifiedNameToggle.addEventListener("click", function(event) {
     updateItem();
 })
 
-// create stat inputs
-function createStatInput(data) {
-    let inputBox = createInputBox('<span style="color: '+getColorCodeHex(data.symbolColor)+'">'+data.symbol+' '+'</span>'+data.name+":", "input", "number")
-    inputBox.children.item(0).classList.add("stat-label");
-
-    let firstInput = inputBox.children.item(1);
-    firstInput.id = data.id;
-    firstInput.classList.add("stat-input", "range-first-input");
-    firstInput.type = "number";
-
-    let secondInput = document.createElement("input");
-    secondInput.id = data.id;
-    secondInput.classList.add("data-input", "stat-input", "range-second-input", "hidden");
-    firstInput.type = "number";
-    inputBox.appendChild(secondInput);
-
-    let button = document.createElement("button");
-    button.id = data.id;
-    button.classList.add("toggle-range-button");
-    button.textContent = "Toggle Range";
-    inputBox.appendChild(button);
-
-    document.getElementById("statData").appendChild(inputBox);
-}
-
 for (let data of statData) {
-    createStatInput(data);
+    createStatInput(data, document.getElementById("statData"));
 }
 
 // Range Toggles
@@ -440,7 +396,7 @@ for (let button of allButtons) {
 
 // Store edited item
 let EDITED_ITEM;
-updateItem(URL_DATA_ITEM === "$"); // is new item
+updateItem(URL_DATA === "$"); // is new item
 
 function importItem(item) {
     internalId.value = item.internalId;
@@ -620,18 +576,9 @@ function updateItem(refreshPreview = true) {
         );
     }
 
-    // update ability activation selects
-    updateActivationSelects();
-
     // run conditional fields check
     run_matches();
     
     // update preview
     if (refreshPreview) updatePreview(EDITED_ITEM, prevTooltip, prevCanvas);
-}
-
-function updateActivationSelects() {
-    const abilitySelects = document.getElementsByClassName("ability-activation-select");
-
-
 }

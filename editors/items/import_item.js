@@ -1,5 +1,5 @@
 function import_item() {
-    const id = URL_DATA_ITEM;
+    const id = URL_DATA;
 
     if (id && id !== undefined && id !== null && id !== "$")
     for (let item of allItems) {
