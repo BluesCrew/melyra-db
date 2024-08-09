@@ -16,16 +16,17 @@ let a = new Mob(
 
 let b = new Mob(
     {
-        name: "Bat",
-        internalId: "bat",
+        name: "Snowy Wolf",
+        internalId: "snowy_wolf",
     }, 
     {
         health: 200,
         defense: 80
     }, 
     {
-        minecraftId: "bat",
+        minecraftId: "wolf",
         level: 30,
+        textureVariant: "snowy"
     }
 );
 

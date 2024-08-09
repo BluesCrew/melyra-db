@@ -16,7 +16,7 @@ export function renderBaseMob(mob, canvas, itemListPreview=false) {
                     if (child.isMesh && child.material.map) {
                         console.log(child);
                         new THREE.TextureLoader().load(
-                            `/melyra-db/assets/mob_textures/${mob.internalId}/${mob.textureVariant}.png`,
+                            `/melyra-db/assets/mob_textures/${mob.minecraftId}/${mob.textureVariant}.png`,
 
                             function(tex) {
                                 tex.flipY = false;
