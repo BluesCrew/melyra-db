@@ -41,6 +41,7 @@ let c = new Mob(
     {
         minecraftId: "cat",
         level: 30,
+        textureVariant: "ocelot"
     }
 );
 

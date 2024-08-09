@@ -3,16 +3,43 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 export function renderBaseMob(mob, canvas, itemListPreview=false) {
-
     const loader = new GLTFLoader();
     
     loader.load(
         `/melyra-db/assets/models/${mob.minecraftId}.gltf`,
 
         function(gltf) {
-            console.log(canvas);
-
             const scene = new THREE.Scene();
+
+            if (mob.textureVariant !== null && mob.textureVariant !== "") {
+                gltf.scene.traverse(function (child) {
+                    if (child.isMesh && child.material.map) {
+                        console.log(child);
+                        new THREE.TextureLoader().load(
+                            `/melyra-db/assets/mob_textures/${mob.internalId}/${mob.textureVariant}.png`,
+
+                            function(tex) {
+                                tex.flipY = false;
+                                console.log('loaded', tex);
+                                tex.minFilter = THREE.LinearFilter;
+                                tex.magFilter = THREE.NearestFilter;
+                                child.material.map = tex;
+                                child.material.map.needsUpdate = true;
+                            },
+
+                            undefined,
+
+                            function(err){
+                                console.error(err);
+                            }
+                        );
+
+                    }
+                }
+                )
+            }
+
+
             const light = new THREE.AmbientLight();
             scene.add(light);
 
@@ -23,7 +50,6 @@ export function renderBaseMob(mob, canvas, itemListPreview=false) {
             }
             scene.add(camera);
             scene.add(gltf.scene);
-            console.log(scene);
 
             camera.position.set(-1, 1, -1);
             camera.lookAt(0, 0, 0);
@@ -44,6 +70,9 @@ export function renderBaseMob(mob, canvas, itemListPreview=false) {
                 cameraControls.update();
             }
 
+            console.log(gltf.scene);
+
+            cancelAnimationFrame(render);
             render();
 
             function render() {

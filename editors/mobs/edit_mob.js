@@ -2,8 +2,11 @@ import {previewMob} from "./preview.js";
 
 // Get Inputs
 const inputs = {}
-for (let id of ["internalId", "versionId", "minecraftId", "mobName", "mobNameColor", "mobLevel", "mobDeathLootTable", "isCustomAggressive", "tags", "otherNBT"]) {
+for (let id of ["internalId", "versionId", "minecraftId", "textureVariant", "mobName", "mobNameColor", "mobLevel", "mobDeathLootTable", "isCustomAggressive", "tags", "otherNBT"]) {
     inputs[id] = document.getElementById(id);
+    inputs[id].onchange = (event) => {
+        updateMob();
+    }
 }
 
 // Create Stat Inputs
@@ -16,8 +19,6 @@ let EDITED_MOB;
 updateMob(URL_DATA === "$"); // is new mob
 
 export function importMob(mob) {
-    console.log(mob);
-
     inputs.internalId.value = mob.internalId;
     inputs.versionId.value = mob.versionNumber;
     inputs.minecraftId.value = mob.minecraftId;
@@ -28,30 +29,18 @@ export function importMob(mob) {
     inputs.isCustomAggressive.value = mob.isCustomAggressive;
     inputs.tags.value = mob.tags;
     inputs.otherNBT.value = mob.otherNBT;
+    inputs.textureVariant.value = mob.textureVariant;
 
     updateMob();
 }
 
 function updateMob(refreshPreview = true) {
-    let element_data = {
-        name: inputs.mobName.value,
-        internalId: inputs.internalId.value,
-        versionNumber: inputs.versionId.value
-    }
-
-    let base_data = {   
-        nameColor: inputs.mobNameColor.value,
-        minecraftId: inputs.minecraftId.value,
-        level: inputs.mobLevel.value,
-        deathLootTable:inputs.mobDeathLootTable.value,
-        isCustomAggressive: inputs.isCustomAggressive.value,
-        tags: inputs.tags.value,
-        otherNBT: inputs.otherNBT.value
-    }
-
-
     EDITED_MOB = new Mob(
-        element_data,
+        {
+            name: inputs.mobName.value,
+            internalId: inputs.internalId.value,
+            versionNumber: inputs.versionId.value
+        },
         {
             health: inputs.stat_healthInput,
             defense: inputs.stat_defenseInput,
@@ -61,7 +50,16 @@ function updateMob(refreshPreview = true) {
             speed: inputs.stat_speedInput,
             knockbackResistance: inputs.stat_woodcuttingSpeedInput
         },
-        base_data
+        {   
+            nameColor: inputs.mobNameColor.value,
+            minecraftId: inputs.minecraftId.value,
+            textureVariant: inputs.textureVariant.value,
+            level: inputs.mobLevel.value,
+            deathLootTable:inputs.mobDeathLootTable.value,
+            isCustomAggressive: inputs.isCustomAggressive.value,
+            tags: inputs.tags.value,
+            otherNBT: inputs.otherNBT.value
+        }
     );
 
     // run conditional fields check
