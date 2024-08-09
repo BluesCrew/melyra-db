@@ -21,8 +21,8 @@ export function renderBaseMob(mob, canvas, itemListPreview=false) {
                             function(tex) {
                                 tex.flipY = false;
                                 console.log('loaded', tex);
-                                tex.minFilter = THREE.LinearFilter;
                                 tex.magFilter = THREE.NearestFilter;
+                                tex.colorSpace = THREE.SRGBColorSpace
                                 child.material.map = tex;
                                 child.material.map.needsUpdate = true;
                             },
