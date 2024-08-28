@@ -9,6 +9,26 @@ for (let id of ["internalId", "versionId", "minecraftId", "textureVariant", "mob
     }
 }
 
+// Texture Variants
+function updateVariantSelect(minecraftId) {
+    const variantSelect = inputs.textureVariant;
+    variantSelect.innerHTML = '';
+    if (minecraftId in entityVariants) {
+        const variants = entityVariants[minecraftId];
+        for (const variant of variants) {
+            const option = document.createElement("option");
+            option.value = variant;
+            option.textContent = toTitleCase(variant.replace(/_/g, " "));
+            option.addEventListener("change", function() {
+                updateMob();
+            })
+            variantSelect.append(option);
+        }
+    }
+    updateMob();
+}
+inputs.minecraftId.addEventListener("change", function(event) {updateVariantSelect(event.target.value);});
+
 // Create Stat Inputs
 for (let data of mobStatData) {
     inputs[`stat_${data.id}Input`] = createStatInput(data, document.getElementById("statData"));
@@ -30,6 +50,8 @@ export function importMob(mob) {
     inputs.tags.value = mob.tags;
     inputs.otherNBT.value = mob.otherNBT;
     inputs.textureVariant.value = mob.textureVariant;
+
+    updateVariantSelect(mob.minecraftId);
 
     updateMob();
 }

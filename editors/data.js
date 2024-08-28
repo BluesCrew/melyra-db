@@ -138,3 +138,8 @@ const itemComponents = [
     {"component": "minecraft:enchantment_glint_override", "type": "bool"},
     {"component": "minecraft:enchantments", "type": "string_obj", "input_placeholder": "{'levels':{'minecraft:unbreaking': 3, 'minecraft:fortune': 3}}"}
 ]
+
+const entityVariants = {
+    'cat': ['all_black', 'black', 'british_shorthair', 'calico', 'jellie', 'ocelot', 'persian', 'ragdoll', 'red', 'siamese', 'tabby', 'white'],
+    'wolf': ['normal', 'ashen', 'black', 'chestnut', 'rusty', 'snowy', 'spotted', 'striped', 'woods', 'custom..']
+}
