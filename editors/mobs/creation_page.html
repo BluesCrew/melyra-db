@@ -63,10 +63,67 @@
                     <div>Minecraft ID: </div>
                     <input type="text" class="data-input" placeholder="minecraft:zombie" id="minecraftId">
                 </div>
-                <div class="inputbox">
+                <div class="inputbox" id="textureVariantBox">
                     <div>Texture Variant: </div>
                     <select class="data-input" id="textureVariant">
 
+                    </select>
+                </div>
+                <div class="inputbox" id="fishSizeBox">
+                    <div>Is Big Fish: </div>
+                    <input type="checkbox" class="data-input" id="fishSize">
+                </div>
+                <div class="inputbox" id="fishPatternBox">
+                    <div>Fish Pattern: </div>
+                    <select class="data-input" id="fishPattern">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="inputbox" id="fishBaseColorBox">
+                    <div>Fish Base Color: </div>
+                    <select class="data-input" id="fishBaseColor">
+                        <option value="White" selected>White</option>
+                        <option value="Orange">Orange</option>
+                        <option value="Magenta">Magenta</option>
+                        <option value="Light Blue">Light Blue</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Lime">Lime</option>
+                        <option value="Pink">Pink</option>
+                        <option value="Gray">Gray</option>
+                        <option value="Light Gray">Light Gray</option>
+                        <option value="Cyan">Cyan</option>
+                        <option value="Purple">Purple</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Brown">Brown</option>
+                        <option value="Green">Green</option>
+                        <option value="Red">Red</option>
+                        <option value="Black">Black</option>
+                    </select>
+                </div>
+                <div class="inputbox" id="fishPatternColorBox">
+                    <div>Fish Pattern Color: </div>
+                    <select class="data-input" id="fishPatternColor">
+                        <option value="White" selected>White</option>
+                        <option value="Orange">Orange</option>
+                        <option value="Magenta">Magenta</option>
+                        <option value="Light Blue">Light Blue</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Lime">Lime</option>
+                        <option value="Pink">Pink</option>
+                        <option value="Gray">Gray</option>
+                        <option value="Light Gray">Light Gray</option>
+                        <option value="Cyan">Cyan</option>
+                        <option value="Purple">Purple</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Brown">Brown</option>
+                        <option value="Green">Green</option>
+                        <option value="Red">Red</option>
+                        <option value="Black">Black</option>
                     </select>
                 </div>
                 <div class="group-label">Common Data</div>
@@ -123,7 +180,7 @@
     <script src="./../get_url_params.js"></script>
     <script src="get_mobs.js"></script>
     <script src="preview.js" type="module"></script>
-    <!-- <script src="conditional_fields.js"></script> -->
+    <script src="conditional_fields.js"></script>
     <script src="edit_mob.js" type="module"></script>
     <script src="import_mob.js" type="module"></script>
     <script src="load_done.js" type="module"></script>

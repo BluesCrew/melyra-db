@@ -133,6 +133,26 @@ const colors = [
     'white'
 ];
 
+const defaultColors = {
+    "White" : 16383998,
+    "Orange" : 16351261,
+    "Magenta" : 13061821,
+    "Light Blue" : 3847130,
+    "Yellow" : 16701501,
+    "Lime" : 8439583,
+    "Pink" : 15961002,
+    "Gray" : 4673362,
+    "Light Gray" : 10329495,
+    "Cyan" : 1481884,
+    "Purple" : 8991416,
+    "Blue" : 3949738,
+    "Brown" : 8606770,
+    "Green" : 6192150,
+    "Red" : 11546150,
+    "Black" : 1908001
+}
+
+
 const itemComponents = [
     {"component": "minecraft:custom_data", "type": "string_obj", "input_placeholder": "{Foo:'Bar', Food:{Today:'Apples', Tomorrow:'Bananas'}}"},
     {"component": "minecraft:enchantment_glint_override", "type": "bool"},
