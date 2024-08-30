@@ -2,7 +2,7 @@ import {previewMob} from "./preview.js";
 
 // Get Inputs
 const inputs = {}
-for (let id of ["internalId", "versionId", "minecraftId", "textureVariant", "mobName", "mobNameColor", "mobLevel", "mobDeathLootTable", "isCustomAggressive", "tags", "otherNBT"]) {
+for (let id of ["internalId", "versionId", "minecraftId", "textureVariant", "mobName", "mobNameColor", "mobLevel", "mobDeathLootTable", "isCustomAggressive", "tags", "otherNBT", "fishSize", "fishPattern", "fishBaseColor", "fishPatternColor"]) {
     inputs[id] = document.getElementById(id);
     inputs[id].onchange = (event) => {
         updateMob();
@@ -46,10 +46,14 @@ export function importMob(mob) {
     inputs.mobNameColor.value = mob.nameColor;
     inputs.mobLevel.value = mob.level;
     inputs.mobDeathLootTable.value = mob.deathLootTable;
-    inputs.isCustomAggressive.value = mob.isCustomAggressive;
+    inputs.isCustomAggressive.checked = mob.isCustomAggressive;
     inputs.tags.value = mob.tags;
     inputs.otherNBT.value = mob.otherNBT;
     inputs.textureVariant.value = mob.textureVariant;
+    inputs.fishSize.checked = mob.fishSize;
+    inputs.fishPattern.value = mob.fishPattern;
+    inputs.fishBaseColor.value = mob.fishBaseColor;
+    inputs.fishPatternColor.value = mob.fishPatternColor;
 
     updateVariantSelect(mob.minecraftId);
 
@@ -76,16 +80,23 @@ function updateMob(refreshPreview = true) {
             nameColor: inputs.mobNameColor.value,
             minecraftId: inputs.minecraftId.value,
             textureVariant: inputs.textureVariant.value,
+
+            //tropical fish
+            fishSize: inputs.fishSize.checked,
+            fishPattern: inputs.fishPattern.value,
+            fishBaseColor: inputs.fishBaseColor.value,
+            fishPatternColor: inputs.fishPatternColor.value,
+
             level: inputs.mobLevel.value,
             deathLootTable:inputs.mobDeathLootTable.value,
-            isCustomAggressive: inputs.isCustomAggressive.value,
+            isCustomAggressive: inputs.isCustomAggressive.checked,
             tags: inputs.tags.value,
             otherNBT: inputs.otherNBT.value
         }
     );
 
     // run conditional fields check
-    // run_matches();
+    run_matches();
     
     // update preview
     const canvas = document.getElementById("mobPreviewCanvas");

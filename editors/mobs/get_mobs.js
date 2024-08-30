@@ -46,5 +46,23 @@ let c = new Mob(
     }
 );
 
+let d = new Mob(
+    {
+        name: "tropical_fish",
+        internalId: "tropical_fish",
+    }, 
+    {
+        health: 200,
+        defense: 80
+    }, 
+    {
+        minecraftId: "tropical_fish",
+        level: 30,
+        fishPattern: "5",
+        fishBaseColor: "Light Blue",
+        fishPatternColor: "Yellow"
+    }
+);
+
 const allMobs = [];
-allMobs.push(a, b, c);
+allMobs.push(a, b, c, d);

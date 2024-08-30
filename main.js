@@ -244,8 +244,12 @@ class Mob extends MelyraElement {
     tags;
     otherNBT;
     textureVariant;
+    fishSize;
+    fishPattern;
+    fishBaseColor;
+    fishPatternColor;
 
-    constructor(baseArgs, statArgs, {nameColor="red", minecraftId="zombie", level=1, deathLootTable=null, abilities=null, isCustomAggressive=false, tags=null, otherNBT=null, textureVariant=null}) {
+    constructor(baseArgs, statArgs, {nameColor="red", minecraftId="zombie", level=1, deathLootTable=null, abilities=null, isCustomAggressive=false, tags=null, otherNBT=null, textureVariant=null, fishSize=null, fishPattern=null, fishBaseColor=null, fishPatternColor=null}) {
         super(baseArgs);
 
         Object.assign(this.stats, statArgs);
@@ -259,5 +263,9 @@ class Mob extends MelyraElement {
         this.tags = tags;
         this.otherNBT = otherNBT;
         this.textureVariant = textureVariant;
+        this.fishSize = fishSize;
+        this.fishPattern = fishPattern;
+        this.fishBaseColor = fishBaseColor;
+        this.fishPatternColor = fishPatternColor;
     }
 }
